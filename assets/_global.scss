@@ -1,0 +1,87 @@
+// Your styles.scss
+$navW: 340px;
+
+$greclr: #059669;
+$grehclr: #45a049;
+
+$bluclr: #0284c7;
+$bluhclr: #38bdf8;
+$bdclr: #0b1a57;
+$orclr: #f7cb77;
+$errclr: #ff0000;
+
+$graclr: #555;
+$gra2clr: #4f4f4f;
+$divider: #0f172a1a;
+$dark: #1a1a1a;
+
+$web: #f0f2f5;
+$webD: #e4e6eb;
+$wnice: #f5f8fe;
+$darkblue: #263959;
+$wdark: #545454;
+
+$xsmS: 417px;
+$smS: 576px;
+$mS: 768px;
+$lS: 992px;
+$xlS: 1200px;
+$xxlS: 1400px;
+
+/* mixins */
+@mixin less($size) {
+	@media (max-width: $size) {
+		@content;
+	}
+}
+@mixin more($size) {
+	@media (min-width: $size) {
+		@content;
+	}
+}
+
+@mixin between($s, $l) {
+	@media (min-width: $s) and (max-width: $l) {
+		@content;
+	}
+}
+
+@mixin zclr($color, $amount: 10%) {
+	background-color: $color;
+	cursor: pointer;
+	&:hover {
+		background-color: lighten($color, $amount);
+	}
+	&:disabled {
+		cursor: not-allowed;
+		background-color: lighten($color, 60%);
+	}
+}
+
+@mixin zfont($s: 1rem, $w: normal, $c: #000) {
+	font-size: $s;
+	font-weight: $w;
+	color: $c;
+}
+
+@mixin zbtn($bc: #059559, $p: 12px 36px) {
+	@include zclr($bc);
+	padding: $p;
+	border-radius: 8px;
+	display: block;
+	border: none;
+	width: fit-content;
+}
+
+@mixin zflex($d: row, $w: nowrap, $h: center, $v: center) {
+	display: flex;
+	flex-direction: $d;
+	flex-wrap: $w;
+	justify-content: $h;
+	align-items: $v;
+}
+@mixin zpage($clr: #f0f2f5) {
+	min-height: calc(100dvh - 133px);
+	background-color: $clr;
+}
+

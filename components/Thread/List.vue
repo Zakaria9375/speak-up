@@ -1,0 +1,66 @@
+<script lang="ts" setup>
+	const { threads } = defineProps({
+		threads: {
+			type: Array<Thread>,
+			required: true,
+		},
+	});
+</script>
+
+<template>
+	<div class="thread-item">
+		<div class="thread-list">
+			<h2 class="list-title">Threads</h2>
+			<div v-for="thread in threads" :key="thread.$id" class="thread g-listing">
+				<div class="g-details flex">
+					<nuxt-link :to="`/dashboard/thread/${thread.$id}`">
+						{{ thread.title }}
+					</nuxt-link>
+					<p class="replies">{{ thread.posts.length}} replies</p>
+				</div>
+
+				<div class="madeBy noneSS">
+					<img
+						class="xavatar"
+						:src="thread.madeBy.avatar"
+						alt="thread.madeBy.username"
+					/>
+					<div class="g-detail">
+						<nuxt-link
+							:to="`/dashboard/profile/${thread.madeBy.$id}`"
+							>{{ thread.madeBy.name }}</nuxt-link
+						>
+						<p>
+							<BaseDate :isoTimestamp="thread.$createdAt" />
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<style lang="scss">
+	.thread-item {
+		.thread-list {
+			.thread {
+				.flex {
+					flex-grow: 1;
+					@include zflex(row, wrap, space-between, center);
+					row-gap: 10px;
+					.replies {
+						@include zfont(1.125rem, 300, $dark);
+						margin: 0;
+					}
+				}
+				.madeBy {
+					flex-basis: 40%;
+					@include more($smS) {
+						@include zflex;
+						justify-content: flex-end;
+					}
+				}
+			}
+		}
+	}
+</style>
