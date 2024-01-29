@@ -11,7 +11,7 @@
 	<div class="thread-item">
 		<div class="thread-list">
 			<h2 class="list-title">Threads</h2>
-			<div v-for="thread in threads" :key="thread.$id" class="thread g-listing">
+			<div v-if="threads.length" v-for="thread in threads" :key="thread.$id" class="thread g-listing">
 				<div class="g-details flex">
 					<nuxt-link :to="`/dashboard/thread/${thread.$id}`">
 						{{ thread.title }}
@@ -35,6 +35,9 @@
 						</p>
 					</div>
 				</div>
+			</div>
+			<div v-else class="thread g-listing">
+				<p class="no-thread">Be the first one to create a thread in this forum</p>
 			</div>
 		</div>
 	</div>
@@ -62,5 +65,8 @@
 				}
 			}
 		}
+	}
+	.no-thread {
+		@include zfont(1.375rem, 400, $dark)
 	}
 </style>

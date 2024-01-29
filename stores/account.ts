@@ -23,7 +23,7 @@ export const useAccountStore = defineStore("account", () => {
 	async function createEmailVerification() {
 		try {
 			await appWrite.account.createVerification(
-				"http://localhost:3000/email-verify"
+				"https://speak-up.zaportfolio.com/email-verify"
 			);
 			addNoti("Email verification has been created", "i");
 		} catch (error) {
@@ -71,7 +71,7 @@ export const useAccountStore = defineStore("account", () => {
 	async function recoverPassword(email: string) {
 		await appWrite.account.createRecovery(
 			email,
-			"http://localhost:3000/auth/password-recovery"
+			"https://speak-up.zaportfolio.com/auth/password-recovery"
 		);
 	}
 

@@ -7,7 +7,7 @@
 	});
 	const isLoggedIn = computed(() => authStore.loggedIn);
 	const showLink = computed(()=> {
-		return route.path === "/dashboard"
+		return route.path !== "/dashboard" && isLoggedIn.value 
 	})
 </script>
 
@@ -32,7 +32,7 @@
 							>Sign up</nuxt-link
 						>
 					</div>
-					<nuxt-link v-if="!showLink" to="/dashboard">
+					<nuxt-link v-if="showLink" to="/dashboard">
 						<span v-show="btnText" class="or-btn">Go to Dashboard</span>
 						<div v-show="!btnText" class="photo dash-pic" title="go to dashboard">
 							<img src="/static/welcome/dashboard.png" alt="dashboard" />

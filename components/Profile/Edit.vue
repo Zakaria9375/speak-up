@@ -80,7 +80,7 @@
 							v-model="newBio"
 							:maxlength="256"
 						/>
-						<div class="text-counter">{{ newBio.length }} / 256</div>
+						<div class="text-counter" v-if="newBio">{{ newBio.length }} / 256</div>
 					</div>
 
 					<div class="form-act">

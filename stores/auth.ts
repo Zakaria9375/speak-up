@@ -121,8 +121,8 @@ export const useAuthStore = defineStore("auth", () => {
 		try {
 			appWrite.account.createOAuth2Session(
 				"google",
-				"http://localhost:3000/google-success",
-				"http://localhost:3000/auth/login"
+				"https://speak-up.zaportfolio.com/google-success",
+				"https://speak-up.zaportfolio.com/auth/login"
 			);
 		} catch (error) {
 			console.log("🍍🔑❌ google login", error);

@@ -54,7 +54,7 @@
 					nom="password"
 					v-model="form.password"
 				/>
-				<p class="helper">Password is Required for your own security. If you signed with google and you do not have password. please make password first</p>
+				<p class="helper">Password is Required. If you signed with google and you do not have password. please make password first</p>
 			</template>
 		</AccountCard>
 		<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
