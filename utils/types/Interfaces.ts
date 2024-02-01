@@ -53,6 +53,7 @@ export interface LastThread {
 	title: string;
 	forum: Forum;
 	madeBy: User;
+	$createdAt: string;
 }
 
 export interface Post {

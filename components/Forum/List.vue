@@ -13,6 +13,14 @@ const { forums, title, categoryId } = defineProps({
 		required: false,
 	},
 })
+	const shortTitle = computed(() => {
+		const maxLength = 35;
+		const ending = "...";
+		if (title && title.length > maxLength) {
+			return title.substring(0, maxLength) + ending;
+		}
+		return title;
+	});
 </script>
 
 <template>
@@ -20,7 +28,7 @@ const { forums, title, categoryId } = defineProps({
 		<div class="forum-list">
 			<h2 class="list-title">
 				<nuxt-link :to="`/dashboard/category/${categoryId}`">
-					{{ title }}
+					{{ shortTitle }}
 				</nuxt-link>
 			</h2>
 
@@ -55,10 +63,13 @@ const { forums, title, categoryId } = defineProps({
 		.forum {			
 			.forum-details {
 				flex-shrink: 1;
+				min-width: 200px;
+				margin-right: 10px;
 			}
 			.threads-count {
 				width: 65px;
 				text-align: center;
+				margin: 0 16px;
 				.count {
 					@include zfont(1.25rem, 300, $dark);
 					margin: 0;

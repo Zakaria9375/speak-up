@@ -22,7 +22,7 @@
 <style lang="scss">
 	.dash-layout {
 		.board-content {
-			@include more(680px) {
+			@include more(850px) {
 				@include zflex;
 				align-items: flex-start;
 			}

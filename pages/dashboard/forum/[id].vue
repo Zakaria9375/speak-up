@@ -17,7 +17,7 @@
 	} = await useDocFetcher("forums", id.value);
 	onMounted(() => {
 		const appWrite = useAppWrite();
-		const unsub = appWrite.client.subscribe(events, () => {
+		appWrite.client.subscribe(events, () => {
 			reexecute();
 		});
 	});

@@ -24,7 +24,7 @@
 <template>
 	<div class="main-nav">
 		<div class="nav-head">
-			<div v-show="width <= 680 ? true : false" class="icon">
+			<div v-show="width <= 850 ? true : false" class="icon">
 				<fai
 					:icon="refValue ? 'circle-xmark' : 'bars'"
 					class="fa-icon"
@@ -71,7 +71,7 @@
 <style lang="scss">
 	.main-nav {
 		padding: 0 8px 16px;
-		@include more(680px) {
+		@include more(850px) {
 			min-height: calc(100dvh - 150px);
 			max-height: v-bind(scrollH);
 		}
@@ -144,12 +144,12 @@
 			}
 		}
 		nav {
-			@include more(680px) {
+			@include more(850px) {
 				width: $navW;
 				min-width: $navW;
 				padding-top: 16px;
 			}
-			@include less(680px) {
+			@include less(850px) {
 				max-height: 0;
 				width: 100%;
 				overflow: hidden;

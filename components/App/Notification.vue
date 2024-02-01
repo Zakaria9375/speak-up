@@ -1,5 +1,9 @@
 <script setup>
 	const { notis, addNoti, removeNoti } = useNotifications();
+	const {width} = useWindowSize()
+	const w = computed(()=>{
+		return `calc(${width}px - 50px)`
+	})
 </script>
 <template>
 	<div class="nots">
@@ -19,6 +23,8 @@
 		.not {
 			background: #fff;
 			min-width: 280px;
+
+			max-width: v-bind(w);
 			@include zfont(1.25rem, 400, $dark);
 			box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 			padding: 12px 16px;

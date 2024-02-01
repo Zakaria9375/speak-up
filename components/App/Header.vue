@@ -2,9 +2,6 @@
 	const route = useRoute();
 	const { width } = useWindowSize();
 	const authStore = useAuthStore();
-	const btnText = computed(() => {
-		return width.value > 480;
-	});
 	const isLoggedIn = computed(() => authStore.loggedIn);
 	const showLink = computed(()=> {
 		return route.path !== "/dashboard" && isLoggedIn.value 
@@ -33,10 +30,7 @@
 						>
 					</div>
 					<nuxt-link v-if="showLink" to="/dashboard">
-						<span v-show="btnText" class="or-btn">Go to Dashboard</span>
-						<div v-show="!btnText" class="photo dash-pic" title="go to dashboard">
-							<img src="/static/welcome/dashboard.png" alt="dashboard" />
-						</div>
+						<span class="or-btn">Go to Dashboard</span>
 					</nuxt-link>
 				</section>
 			</nav>
@@ -98,6 +92,9 @@
 				@include zfont(1rem, 500, $gra2clr);
 				cursor: pointer;
 				margin-left: 12px;
+				@include less($smS) {
+					padding: 12px;
+				}
 			}
 			.dash-pic {
 				max-width: 46px;

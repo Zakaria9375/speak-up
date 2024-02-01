@@ -26,10 +26,14 @@ export function useNotifications() {
 		notis.push(notification);
 		if (t === "e") {
 			console.log("🔔", msg.value, more);
+			setTimeout(() => {
+				removeNoti(notification.$id);
+			}, 5000);
+		} else {
+			setTimeout(() => {
+				removeNoti(notification.$id);
+			}, 3000);
 		}
-		setTimeout(() => {
-			removeNoti(notification.$id);
-		}, 3000);
 	}
 	function removeNoti(id: string) {
 		const idx = notis.findIndex((i) => i.$id === id);

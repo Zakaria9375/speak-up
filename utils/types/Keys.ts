@@ -64,6 +64,7 @@ export const lastThreadKeys: (keyof LastThread)[] = [
 	"title",
 	"forum",
 	"madeBy",
+	"$createdAt",
 ];
 
 export const postKeys: (keyof Post)[] = [

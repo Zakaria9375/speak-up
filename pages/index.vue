@@ -21,34 +21,6 @@
 			sub: "Boost adoption rates with a platform that people actually enjoy using for effective communication.",
 		},
 	];
-
-	const faqs = [
-		{
-			question: "What is Speak-up and how does it work?",
-			answer:
-				"Speak-up is a communication platform designed to facilitate online discussions and collaboration. It organizes content into categories, each containing forums. Within these forums, users can create threads on specific topics, and each thread comprises individual posts where users can share information, ask questions, and interact with others.",
-		},
-		{
-			question: "How do I create a new thread in a forum?",
-			answer:
-				"To create a new thread, first navigate to the category that best fits your topic. Then, select the forum where you want to start your thread. Click on the Create Thread button, enter a title and your message, and then submit it. Your thread will now be open for others to view and respond to with their posts.",
-		},
-		{
-			question: "How does Speak-up handle security and data?",
-			answer:
-				"Speak-up prioritizes the security and privacy of user data. To achieve this, we utilize Appwrite, a robust open-source backend server, known for its comprehensive security features. Appwrite includes end-to-end encryption, ensuring that all data, both in transit and at rest, is securely encrypted. Additionally, Appwrite follows strict authentication and authorization protocols to control access to data, preventing unauthorized access.",
-		},
-		{
-			question: "How does the pricing work?",
-			answer:
-				"Speak-up is completely free to use. As an open-source platform, we are committed to providing a cost-free communication tool that is accessible to everyone. Users can create and join forums, threads, and posts without any charges. Our open-source nature also means that enthusiastic developers and users can contribute to the app development, ensuring continuous improvement and innovation without any cost.",
-		},
-	];
-	const activeIndex = ref(-1);
-
-	const toggleAnswer = (index: number) => {
-		activeIndex.value = activeIndex.value === index ? -1 : index;
-	};
 </script>
 
 <template>
@@ -61,19 +33,17 @@
 						An internal communication app that enables you to reach everyone,
 						everywhere – in the office, at home or on the frontline.
 					</p>
-					<nuxt-link to="/auth/register" class="bbtn"
-						>Join us now</nuxt-link
-					>
+					<nuxt-link to="/auth/register" class="bbtn">Join us now</nuxt-link>
 				</div>
 				<div class="photo">
 					<img src="/static/welcome/chat-bro.png" alt="landing image" />
 				</div>
 			</div>
 		</section>
-		<section class="whatToExpect">
+		<section class="whatToExpect sec-pad z-clr">
 			<div class="container">
-				<div class="tit">
-					<h2 class="tito">What to Expect</h2>
+				<div class="sec-main-title">
+					<h1>What to Expect</h1>
 				</div>
 				<div class="features">
 					<div v-for="f in whatToExpect" class="feature">
@@ -88,7 +58,99 @@
 				</div>
 			</div>
 		</section>
-		<section class="contact">
+		<section class="stats sec-pad">
+			<div class="container">
+				<div class="sec-main-title">
+					<h1>Our awesome app</h1>
+				</div>
+
+				<main>
+					<div class="photo">
+						<img src="/static/welcome/events.png" alt="" />
+					</div>
+					<div class="content">
+						<div class="details">
+							<div class="unit">
+								<span>5</span>
+								<span>Categories</span>
+							</div>
+							<div class="unit">
+								<span>16</span>
+								<span>Forums</span>
+							</div>
+							<div class="unit">
+								<span>27</span>
+								<span>Threads</span>
+							</div>
+							<div class="unit">
+								<span>350</span>
+								<span>Posts</span>
+							</div>
+							<div class="unit">
+								<span>15</span>
+								<span>Users</span>
+							</div>
+						</div>
+						<h1><b>Engage in Meaningful Conversations</b></h1>
+						<p>
+							Join our growing community and be a part of dynamic discussions
+							across various categories. Speak-Up is the perfect place to share
+							your thoughts, learn new perspectives, and connect with
+							like-minded individuals.
+						</p>
+					</div>
+				</main>
+			</div>
+		</section>
+		<section class="why-ourapp z-clr sec-pad">
+			<div class="ex-container">
+				<div class="sec-main-title">
+					<h1>Why Speak-Up?</h1>
+				</div>
+				<main>
+					<div class="why-content">
+						<div class="box">
+							<img src="/static/welcome/goodquality.png" alt="" />
+							<div class="text">
+								<h3>User-Friendly Interface</h3>
+								<p>
+									Designed with simplicity and ease of use in mind, Speak-Up
+									offers an intuitive user interface that makes navigation and
+									participation straightforward for all users.
+								</p>
+							</div>
+						</div>
+						<div class="box">
+							<img src="/static/welcome/improve.png" alt="" />
+							<div class="text">
+								<h3>Continuous Improvement</h3>
+								<p>
+									Being open-source, Speak-Up is constantly improving with new
+									features and updates driven by community feedback and
+									collaboration.
+								</p>
+							</div>
+						</div>
+						<div class="box">
+							<img src="/static/welcome/block.png" alt="" />
+							<div class="text">
+								<h3>Ad-Free Experience</h3>
+								<p>
+									Our platform offers an ad-free experience, focusing purely on
+									user conversations and interactions without the distraction of
+									advertisements.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="photo">
+						<img src="/static/welcome/whyapp.png" alt="" />
+					</div>
+				</main>
+			</div>
+		</section>
+
+		<section class="contact sec-pad">
 			<div class="container">
 				<div class="photo">
 					<img src="/static/welcome/customer-support.webp" alt="cs" />
@@ -101,35 +163,7 @@
 						any queries you may have. Let's make your experience seamless and
 						enjoyable!
 					</p>
-					<nuxt-link :to="{ name: 'contact' }">Contact us</nuxt-link>
-				</div>
-			</div>
-		</section>
-		<section class="faq-sec z-clr">
-			<div class="container">
-				<h2 class="tito">Frequently asked questions</h2>
-				<div class="faqs">
-					<div v-for="(item, index) in faqs" :key="index" class="s-item">
-						<!-- <FAQitem :faq="item" /> -->
-						<div class="faq-item">
-							<div class="qes" @click="toggleAnswer(index)">
-								<h4>{{ item.question }}</h4>
-								<span
-									><fai
-									class="fa-icon"
-										:icon="
-											activeIndex === index
-												? 'fa-chevron-up'
-												: 'fa-chevron-down'
-										"
-									></fai
-								></span>
-							</div>
-							<div v-show="activeIndex === index" class="ans">
-								<p>{{ item.answer }}</p>
-							</div>
-						</div>
-					</div>
+					<nuxt-link :to="{ name: 'contact-us' }">Contact us</nuxt-link>
 				</div>
 			</div>
 		</section>
@@ -170,11 +204,6 @@
 			}
 		}
 		.whatToExpect {
-			background-color: $web;
-			padding: 48px 0;
-			.tit {
-				padding: 16px;
-			}
 			.features {
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -211,9 +240,223 @@
 				}
 			}
 		}
+		.stats {
+			.container {
+				main {
+					@include zflex(row, wrap);
+					gap: 32px;
+					padding-bottom: 54px;
+					.photo {
+						max-width: 480px;
+						padding: 16px;
+					}
+					.content {
+						flex: 1;
+						text-align: center;
+						@include less(375px) {
+							@include zflex(column);
+							margin-top: 60px;
+						}
+
+						.details {
+							margin: 20px auto 48px;
+							gap: 10px;
+							@include zflex;
+							@include between(375px, 600px) {
+								@include zflex(row, wrap);
+								max-width: 350px;
+							}
+							@include less(375px) {
+								@include zflex(column);
+								position: relative;
+								gap: 0;
+								margin: 0;
+								padding: 32px 0 0;
+								width: fit-content;
+								background-color: #f5f5f5;
+								// margin-left: 76px;
+								&:before {
+									content: "";
+									position: absolute;
+									left: 50%;
+									top: 0;
+									transform: translate(-50%, -100%);
+									width: 0;
+									height: 0;
+									border-left: 125px solid transparent;
+									border-right: 125px solid transparent;
+									border-bottom: 80px solid #f5f5f5;
+									z-index: 0;
+								}
+								// &:after {
+								// 	content: "We are growing";
+								// 	font-family: Great Vibes;
+								// 	color: #eee;
+								// 	font-size: 4rem;
+								// 	width: 400px;
+								// 	position: absolute;
+								// 	left: -100%;
+								// 	bottom: 0;
+								// 	transform: rotateZ(-90deg) translate(60%, -90%);
+								// 	z-index: 0;
+								// }
+							}
+							.unit {
+								@include more(376px) {
+									border-radius: 6px;
+									border: 1px solid #d4d4d4;
+									width: 100px;
+									@include zflex(column);
+									span {
+										width: 100%;
+										&:first-of-type {
+											@include zfont(2rem, 500, $bluclr);
+											padding: 24px 16px;
+										}
+										&:last-of-type {
+											@include zfont(1rem, 400, #999);
+											text-transform: lowercase;
+											border-top: 1px solid #d4d4d4;
+											padding: 12px 16px;
+										}
+									}
+								}
+
+								@include less(375px) {
+									min-width: 150px;
+									position: relative;
+									text-align: left;
+									// border: 1px solid #d4d4d4;
+									// border-radius: 6px;
+									width: 100%;
+									padding: 16px 32px;
+									&:nth-of-type(odd) {
+										background-color: #eee;
+									}
+									span {
+										&:first-of-type {
+											display: block;
+											width: 100%;
+											@include zfont(2.75rem, 500, $bluclr);
+											padding: 8px 16px;
+										}
+										&:last-of-type {
+											position: absolute;
+											right: 16px;
+											top: 8px;
+											@include zfont(1rem, 400, #999);
+											text-transform: lowercase;
+										}
+									}
+								}
+							}
+						}
+					}
+					h1 {
+						@include zfont(2.25rem, 400, #212121);
+						margin: 40px 0 0;
+						font-family: Lilita-One;
+					}
+					p {
+						line-height: 1.45;
+						@include zfont(1.5rem, 500, #666);
+					}
+				}
+			}
+		}
+
+		.why-ourapp {
+			.ex-container {
+				main {
+					@include zflex;
+					justify-content: space-evenly;
+					.why-content {
+						.box {
+							max-width: 700px;
+							background-color: #f6f5f5;
+							padding: 30px;
+							margin-bottom: 20px;
+							border-radius: 6px;
+							@include zflex;
+							border: 2px solid white;
+							position: relative;
+							z-index: 1;
+
+							&:before {
+								content: "";
+								left: 50%;
+								top: 50%;
+								position: absolute;
+								width: 0;
+								height: 0;
+								transform: translate(-50%, -50%);
+								background-color: #ededed;
+								z-index: -1;
+								transition: all 0.3s;
+							}
+							&:hover {
+								&:before {
+									width: 100%;
+									height: 100%;
+								}
+							}
+
+							img {
+								width: 80px;
+								// height: 64px;
+								margin-right: 30px;
+							}
+							.text {
+								h3 {
+									@include zfont(1.5rem, 500, $dark);
+									margin: 8px 0 16px;
+								}
+								p {
+									@include zfont(1.375rem, 400, #666);
+									margin: 16px 0 0;
+								}
+							}
+							@include less($lS) {
+								max-width: 500px;
+
+								&:first-of-type {
+									align-self: flex-start;
+								}
+								&:last-of-type {
+									align-self: flex-end;
+								}
+								.text p {
+									font-size: 1.25rem;
+								}
+							}
+							@include less(500px) {
+								@include zflex(column);
+								img {
+									padding-bottom: 24px;
+									margin-right: 0;
+								}
+								.text h3 {
+									font-size: 1.375rem;
+								}
+							}
+						}
+						@include less($lS) {
+							@include zflex(column);
+							width: 100%;
+							padding: 16px;
+						}
+					}
+					.photo {
+						max-width: 400px;
+						padding-left: 16px;
+						@include less($lS) {
+							display: none;
+						}
+					}
+				}
+			}
+		}
 		.contact {
-			padding-top: 86px;
-			padding-bottom: 86px;
 			.container {
 				@include zflex(row, nowrap, center, center);
 				gap: 48px;
@@ -237,53 +480,6 @@
 						@include zbtn(darken($orclr, 5%), 14px 58px);
 						@include zfont(1.5rem, 500, #666);
 						border-radius: 27.5px;
-					}
-				}
-			}
-		}
-		.faq-sec {
-			padding-top: 54px;
-			padding-bottom: 96px;
-			.container {
-				.faqs {
-					padding: 32px 8px 16px;
-					.s-item {
-						width: 100%;
-						border-bottom: 0.5px solid #c0c0c0;
-						&:first-of-type {
-							border-top: 0.5px solid #c0c0c0;
-						}
-						.faq-item {
-							.qes {
-								@include zflex(row, nowrap, space-between, flex-start);
-								padding: 30px 0;
-								cursor: pointer;
-								h4 {
-									margin: 0;
-									@include zfont(1.5rem, 700, $bdclr);
-								}
-								span {
-									@include zflex;
-									background-color: #aaa;
-									padding: 8px;
-									border-radius: 4px;
-									.fa-icon {
-										font-size: 1.5rem;
-										color: #fff;
-									}
-								}
-							}
-							.ans {
-								overflow: hidden;
-								transition: all 0.6s ease;
-								p {
-									@include zfont(1.25rem, 400, #666);
-									margin: 0;
-									padding-bottom: 30px;
-									line-height: 1.35;
-								}
-							}
-						}
 					}
 				}
 			}

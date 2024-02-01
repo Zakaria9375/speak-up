@@ -2,6 +2,19 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 	ssr: false,
+	app: {
+		head: {
+			title: "Speak Up",
+			meta: [
+				{ charset: "utf-8" },
+				{ name: "viewport", content: "width=device-width, initial-scale=1" },
+				// Add other meta tags as needed
+			],
+			link: [
+				{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }, // Specify the path to your favicon here
+			],
+		},
+	},
 	modules: [
 		"@nuxtjs/google-fonts",
 		"dayjs-nuxt",
@@ -11,7 +24,7 @@ export default defineNuxtConfig({
 		"nuxt-appwrite",
 	],
 	googleFonts: {
-		download: true,
+		download: false,
 		families: {
 			Roboto: [100, 300, 400, 500, 700, 900],
 			"Great+Vibes": [400],

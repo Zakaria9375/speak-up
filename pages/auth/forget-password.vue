@@ -25,7 +25,7 @@
 	});
 </script>
 <template>
-	<div class="fp-page p-page z-clr">
+	<div class="fp-page p-page x-clr">
 		<div class="container z-page">
 			<div class="photo noneLS">
 				<img src="/static/forget/fpa.png" alt="forget password amigo" />

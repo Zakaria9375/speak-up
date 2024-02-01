@@ -60,7 +60,7 @@
 					>
 				</li>
 				<li>
-					<NuxtLink :to="{ name: 'contact' }">
+					<NuxtLink :to="{ name: 'contact-us' }">
 						<div class="icon">
 							<fai class="fa-icon" icon="message"></fai>
 						</div>

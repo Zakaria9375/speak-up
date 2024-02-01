@@ -5,6 +5,14 @@
 			required: true,
 		},
 	});
+		const shortTitle = (title: string) => {
+		const maxLength = 45;
+		const ending = "...";
+		if (title && title.length > maxLength) {
+			return title.substring(0, maxLength) + ending;
+		}
+		return title;
+	};
 </script>
 
 <template>
@@ -14,7 +22,7 @@
 			<div v-if="threads.length" v-for="thread in threads" :key="thread.$id" class="thread g-listing">
 				<div class="g-details flex">
 					<nuxt-link :to="`/dashboard/thread/${thread.$id}`">
-						{{ thread.title }}
+						{{ shortTitle(thread.title) }}
 					</nuxt-link>
 					<p class="replies">{{ thread.posts.length}} replies</p>
 				</div>
