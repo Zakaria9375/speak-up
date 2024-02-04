@@ -42,6 +42,11 @@
 	</div>
 </template>
 <style lang="scss">
+	.t-title {
+		h1 {
+				margin: 0 8px 0 8px;
+		}
+	}
 	.firstPostStyle {
 		border: 1px solid #000;
 		border-top-right-radius: 0 !important;

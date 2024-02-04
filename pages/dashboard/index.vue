@@ -22,8 +22,4 @@
 		</div>
 	</div>
 </template>
-<style lang="scss">
-.main-page {
-	padding: 16px;
-}
-</style>
+<style lang="scss"></style>

@@ -3,9 +3,14 @@
 	const { width } = useWindowSize();
 	const authStore = useAuthStore();
 	const isLoggedIn = computed(() => authStore.loggedIn);
-	const showLink = computed(()=> {
-		return route.path !== "/dashboard" && isLoggedIn.value 
-	})
+	const showLink = computed(() => {
+		const loggedIn = isLoggedIn.value;
+		const startsWithDashboard = route.path.startsWith("/dashboard");
+		const isProfileOrAccount =
+			route.path.startsWith("/dashboard/profile") ||
+			route.path.startsWith("/dashboard/account");
+		return loggedIn && (!startsWithDashboard || isProfileOrAccount);
+	});
 </script>
 
 <template>
@@ -20,8 +25,7 @@
 				</NuxtLink>
 				<!-- <button type="button" @click="authStore.logout()">sigout</button> -->
 				<section class="reg-tools">
-					<AppSignedUser v-if="isLoggedIn" />
-					<div v-else class="sign">
+					<div v-if="!isLoggedIn" class="sign">
 						<nuxt-link :to="{ name: 'auth-login' }" class="sign-in"
 							>Sign in</nuxt-link
 						>
@@ -32,6 +36,7 @@
 					<nuxt-link v-if="showLink" to="/dashboard">
 						<span class="or-btn">Go to Dashboard</span>
 					</nuxt-link>
+					<AppSignedUser v-if="isLoggedIn" />
 				</section>
 			</nav>
 		</header>
@@ -91,7 +96,7 @@
 				@include zbtn(#f6c25f, 12px 24px);
 				@include zfont(1rem, 500, $gra2clr);
 				cursor: pointer;
-				margin-left: 12px;
+				margin-right: 12px;
 				@include less($smS) {
 					padding: 12px;
 				}

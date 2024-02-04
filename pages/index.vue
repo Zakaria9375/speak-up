@@ -21,6 +21,11 @@
 			sub: "Boost adoption rates with a platform that people actually enjoy using for effective communication.",
 		},
 	];
+	const counterStore = useCounterStore();
+	const counts = computed(() => counterStore.counter);
+	onMounted(() => {
+		counterStore.getCounts();
+	});
 </script>
 
 <template>
@@ -46,7 +51,7 @@
 					<h1>What to Expect</h1>
 				</div>
 				<div class="features">
-					<div v-for="f in whatToExpect" class="feature">
+					<div v-for="f in whatToExpect" class="feature" data-aos="fade-up">
 						<div class="photo">
 							<img :src="`/static/welcome/${f.src}`" :alt="f.title" />
 						</div>
@@ -71,28 +76,30 @@
 					<div class="content">
 						<div class="details">
 							<div class="unit">
-								<span>5</span>
+								<span class="unit-nr">{{ counts.categories }}</span>
 								<span>Categories</span>
 							</div>
 							<div class="unit">
-								<span>16</span>
+								<span class="unit-nr">{{ counts.forums }}</span>
 								<span>Forums</span>
 							</div>
 							<div class="unit">
-								<span>27</span>
+								<span class="unit-nr">{{ counts.threads }}</span>
 								<span>Threads</span>
 							</div>
 							<div class="unit">
-								<span>350</span>
+								<span class="unit-nr">{{ counts.posts }}</span>
 								<span>Posts</span>
 							</div>
 							<div class="unit">
-								<span>15</span>
+								<span class="unit-nr">{{ counts.users }}</span>
 								<span>Users</span>
 							</div>
 						</div>
-						<h1><b>Engage in Meaningful Conversations</b></h1>
-						<p>
+						<h1 data-aos="slide-left">
+							<b>Engage in Meaningful Conversations</b>
+						</h1>
+						<p data-aos="slide-left">
 							Join our growing community and be a part of dynamic discussions
 							across various categories. Speak-Up is the perfect place to share
 							your thoughts, learn new perspectives, and connect with
@@ -109,7 +116,7 @@
 				</div>
 				<main>
 					<div class="why-content">
-						<div class="box">
+						<div class="box" data-aos="slide-right">
 							<img src="/static/welcome/goodquality.png" alt="" />
 							<div class="text">
 								<h3>User-Friendly Interface</h3>
@@ -120,7 +127,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="box">
+						<div class="box" data-aos="slide-right">
 							<img src="/static/welcome/improve.png" alt="" />
 							<div class="text">
 								<h3>Continuous Improvement</h3>
@@ -131,7 +138,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="box">
+						<div class="box" data-aos="slide-right">
 							<img src="/static/welcome/block.png" alt="" />
 							<div class="text">
 								<h3>Ad-Free Experience</h3>
@@ -372,6 +379,8 @@
 					justify-content: space-evenly;
 					.why-content {
 						.box {
+							// opacity: 0;
+							// transform: translateX(-150px);
 							max-width: 700px;
 							background-color: #f6f5f5;
 							padding: 30px;

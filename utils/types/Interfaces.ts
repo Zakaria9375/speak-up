@@ -65,3 +65,10 @@ export interface Post {
 }
 
 
+export interface Counter {
+	categories: number;
+	forums: number;
+	threads: number;
+	posts: number;
+	users: number;
+}

@@ -21,7 +21,7 @@ function save() {
 	<div class="post-editor">
 		<div class="u-info">
 			<nuxt-link :to="`/dashboard/profile/${user?.$id}`" class="user">
-				<img class="xavatar" :src="user?.avatar" alt="post.madeBy.username" />
+				<img class="xavatar" :src="user?.avatar" onerror="this.onerror=null;this.src='/static/userPlaceholder.png';" :alt="user?.name" />
 				<div class="user-name">{{ user?.name }}</div>
 			</nuxt-link>
 		</div>

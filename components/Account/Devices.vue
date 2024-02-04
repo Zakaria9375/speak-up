@@ -1,11 +1,15 @@
 <script lang="ts" setup>
 	const { refValue, open, close } = useToggle();
 	const accountStore = useAccountStore();
-	const devices = await accountStore.getAllSessions();
-	function deleteDevice(id: string) {
+	const devices = ref();
+	async function deleteDevice(id: string) {
 		accountStore.deleteSession(id);
 		close();
+		devices.value = await accountStore.getAllSessions();
 	}
+	onMounted(async () => {
+		devices.value = await accountStore.getAllSessions();
+	});
 </script>
 
 <template>
@@ -14,55 +18,61 @@
 		<div class="card-icon">
 			<img src="/static/account/device.png" alt="devices Icon" />
 		</div>
-		<div class="card-content">	
+		<div class="card-content">
 			<p>Review your logged in devices.</p>
 			<button type="button" @click="open" class="nobtn">
 				Manage Devices >
 			</button>
 		</div>
 	</div>
-	<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
-		<div class="msg">
-			<h1>Your devices</h1>
-			<p>Where you're signed in</p>
-			<div class="devices">
-				<div v-for="device in devices" class="device">
-					<div class="device-main">
-						<div class="type">
-							<fai
-								:icon="
-									device.deviceName === 'desktop'
-										? 'laptop'
-										: 'mobile-screen-button'
-								"
-								class="fa-icon"
-							></fai>
-							<div v-if="device.current" class="current">
-								<fai icon="circle-check" class="c-icon" />Current
+	<Transition name="fade">
+		<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
+			<div class="msg">
+				<h1>Your devices</h1>
+				<p>Where you're signed in</p>
+				<div class="devices">
+					<div v-for="device in devices" class="device">
+						<div class="device-main">
+							<div class="type">
+								<fai
+									:icon="
+										device.deviceName === 'desktop'
+											? 'laptop'
+											: 'mobile-screen-button'
+									"
+									class="fa-icon"
+								></fai>
+								<div v-if="device.current" class="current">
+									<fai icon="circle-check" class="c-icon" />Current
+								</div>
+							</div>
+							<div class="info">
+								<div>{{ device.osName }}</div>
+								<div>{{ device.countryName }}</div>
+								<div>{{ device.clientName }}</div>
+								<BaseDate
+									:isoTimestamp="device.$createdAt"
+									:act="true"
+									forma="ll"
+									class="datee"
+								/>
 							</div>
 						</div>
-						<div class="info">
-							<div>{{ device.osName }}</div>
-							<div>{{ device.countryName }}</div>
-							<div>{{ device.clientName }}</div>
-							<BaseDate
-								:isoTimestamp="device.$createdAt"
-								:act="true"
-								forma="ll"
-								class="datee"
-							/>
-						</div>
-					</div>
 
-					<div class="logout">
-						<button type="button" @click="deleteDevice(device.$id)" aria-label="Log out from this device">
-							<fai icon="arrow-right-from-bracket" class="fai"/>Sign out
-						</button>
+						<div class="logout">
+							<button
+								type="button"
+								@click="deleteDevice(device.$id)"
+								aria-label="Log out from this device"
+							>
+								<fai icon="arrow-right-from-bracket" class="fai" />Sign out
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</LazyBasePopUp>
+		</LazyBasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 	.msg {

@@ -1,24 +1,41 @@
 <script lang="ts" setup>
+	import axios from "axios";
+
 	const submitted = ref(false);
-	const { defineField, handleSubmit, errors, validate } = useForm({
+	const { defineField, handleSubmit, errors, validate, resetForm } = useForm({
 		validationSchema: contactSchema,
 	});
+	const { addNoti } = useNotifications();
 	const [name, nameAttrs] = defineField("name");
 	const [email, emailAttrs] = defineField("email");
 	const [subject, subjectAttrs] = defineField("subject");
 	const [message, messageAttrs] = defineField("message");
-
+	const endPoint = "https://getform.io/f/6bda41ea-1b3c-4e1a-8d66-0f9cde75aa79";
 	const onSubmit = handleSubmit(async (values) => {
 		const { valid } = await validate();
 		if (valid) {
-			console.log(values);
-			submitted.value = true;
+			axios
+				.post(endPoint, values, {
+					headers: {
+						Accept: "application/json",
+					},
+				})
+				.then(function (response) {
+					submitted.value = true;
+					resetForm({
+						values: { name: "", email: "", subject: "", message: "" },
+					});
+					addNoti("Your message has been recieved", "s")
+				})
+				.catch(function (error) {
+					addNoti("Error while submitting form", "e", `${error}`);
+				});
 		}
 	});
 </script>
 
 <template>
-	<div class="c-page z-page p-48 ">
+	<div class="c-page z-page p-48">
 		<div class="container">
 			<section class="c-form">
 				<div class="photo noneLS">

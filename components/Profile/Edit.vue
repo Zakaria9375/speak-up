@@ -53,7 +53,7 @@
 	<div>
 		<div v-if="activeUser" class="profile-update">
 			<div class="photo-profile">
-				<img :src="newRandomPhoto" :alt="activeUser.name" class="img-update" />
+				<img :src="newRandomPhoto" onerror="this.onerror=null;this.src='/static/userPlaceholder.png';" :alt="activeUser.name" class="img-update" />
 			</div>
 
 			<section class="update">

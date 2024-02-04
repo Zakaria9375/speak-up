@@ -7,17 +7,17 @@
 		open: openDelete,
 		close: closeDelete,
 	} = useToggle();
-	const appWrite = useAppWrite()
+	const appWrite = useAppWrite();
 	const authStore = useAuthStore();
 	const authUser = computed(() => authStore.authUser);
 	const authAccount = computed(() => authStore.authAccount);
 	function deleteMyAccount() {
 		authStore.deleteAccount();
 	}
-	onMounted(()=> {
-		appWrite.client.subscribe("account", authStore.getAuthUser)
-	})
-
+	onMounted(() => {
+		appWrite.client.subscribe("account", authStore.getAuthUser);
+	});
+	console.log(await appWrite.account.get());
 </script>
 
 <template>
@@ -60,27 +60,37 @@
 			</div>
 		</div>
 	</div>
-	<LazyBasePopUp class="del-main" v-if="deleteAccount" @close="closeDelete">
-		<div class="del-content">
-			<p>Are you sure you want to delete your account?</p>
-			<div class="form-act">
-				<button @click="closeDelete" class="gh-btn">Cancel</button>
-				<button @click="deleteMyAccount" class="blu-sm-btn">Confirm</button>
+	<Transition name="fade">
+		<LazyBasePopUp class="del-main" v-if="deleteAccount" @close="closeDelete">
+			<div class="del-content">
+				<p>Are you sure you want to delete your account?</p>
+				<div class="form-act">
+					<button @click="closeDelete" class="gh-btn">Cancel</button>
+					<button @click="deleteMyAccount" class="red-sm-btn">Confirm</button>
+				</div>
 			</div>
-		</div>
-	</LazyBasePopUp>
+		</LazyBasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 	.account-page {
 		background-color: #f7f7f7;
 		.container {
 			.account-content {
+				padding: 8px;
+				.sides {
+					@include between($smS, $mS) {
+						@include zflex;
+						gap: 10px;
+					}
+				}
 				@include zflex(row, wrap, center, flex-start);
-				gap: 16px;
+				column-gap: 16px;
 				.elements {
 					background-color: #fff;
 					flex: 1;
 					padding: 16px;
+					max-width: 100%;
 					border: 1px solid #ccc;
 					border-radius: 8px;
 					box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

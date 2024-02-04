@@ -17,7 +17,7 @@ export const useAccountStore = defineStore("account", () => {
 			);
 			addNoti("Email has been Updated", "s");
 		} catch (error) {
-			addNoti("Failed to update email", "e", `🍍🪪 ${error}`);
+			addNoti("Failed to update email", "e", `${error}`);
 		}
 	}
 	async function createEmailVerification() {
@@ -27,7 +27,7 @@ export const useAccountStore = defineStore("account", () => {
 			);
 			addNoti("Email verification has been created", "i");
 		} catch (error) {
-			addNoti("Failed to create email verification", "e", `🍍🪪 ${error}`);
+			addNoti("Failed to create email verification", "e", `${error}`);
 		}
 	}
 	async function verifyEmail(secret: string) {
@@ -38,7 +38,7 @@ export const useAccountStore = defineStore("account", () => {
 			await appWrite.account.updateVerification(id.value, secret);
 			addNoti("Email has been verified", "s");
 		} catch (error) {
-			addNoti("Failed to verify email", "e", `🍍🪪 ${error}`);
+			addNoti("Failed to verify email", "e", `${error}`);
 		}
 	}
 
@@ -53,7 +53,7 @@ export const useAccountStore = defineStore("account", () => {
 			);
 			addNoti("Name updated", "s");
 		} catch (error) {
-			addNoti("Failed to update name", "e", `🍍🪪 ${error}`);
+			addNoti("Failed to update name", "e", `${error}`);
 		}
 	}
 
@@ -63,9 +63,9 @@ export const useAccountStore = defineStore("account", () => {
 	}) {
 		try {
 			await appWrite.account.updatePassword(data.newPassword, data.oldPassword);
-			addNoti("Password updated 🔐 ", "s");
+			addNoti("Password updated 🔐", "s");
 		} catch (error) {
-			addNoti("Failed to update password", "e", `🍍🪪🔐 ${error}`);
+			addNoti("Failed to update password", "e", `🔐 ${error}`);
 		}
 	}
 	async function recoverPassword(email: string) {
@@ -83,7 +83,7 @@ export const useAccountStore = defineStore("account", () => {
 			);
 			addNoti("Phone updated 📞 ", "s");
 		} catch (error) {
-			addNoti("Failed to update phone", "e", `🍍🪪📞 ${error}`);
+			addNoti("Failed to update phone", "e", `📞 ${error}`);
 		}
 	}
 	async function createPhoneVerification() {
@@ -96,7 +96,7 @@ export const useAccountStore = defineStore("account", () => {
 			appWrite.account.updatePhoneVerification(id, secret);
 			addNoti("Phone verified ☎️ ", "s");
 		} catch (error) {
-			addNoti("Failed to verify phone", "e", `🍍🪪☎️ ${error}`);
+			addNoti("Failed to verify phone", "e", `☎️ ${error}`);
 		}
 	}
 	async function isRegistered(email: string) {
@@ -122,7 +122,7 @@ export const useAccountStore = defineStore("account", () => {
 			await appWrite.account.deleteSession(sessionId);
 			addNoti("Session deleted", "s");
 		} catch (error) {
-			addNoti("Failed to delete session", "e", `🍍🪪 ${error}`);
+			addNoti("Failed to delete session", "e", `${error}`);
 		}
 	}
 	return {

@@ -22,6 +22,7 @@ export default defineNuxtConfig({
 		"@vee-validate/nuxt",
 		"@vueuse/nuxt",
 		"nuxt-appwrite",
+		"nuxt-aos",
 	],
 	googleFonts: {
 		download: false,

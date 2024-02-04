@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-	const policy = [
+	const policies = reactive([
 		{
 			question: "What information do we collect?",
 			answer:
 				"We may collect information about you in a variety of ways. The information we may collect via the App includes:",
+			isVisible: false,
 			list: [
 				{
 					subtitle: "Personal Data: ",
@@ -25,6 +26,7 @@
 		{
 			question: "How do we use your information?",
 			answer: "We use the information collected about you via the App to:",
+			isVisible: false,
 			list: [
 				{
 					subtitle: "",
@@ -41,6 +43,7 @@
 			question: "Disclosure of Your Information",
 			answer:
 				"We may share information we have collected about you in certain situations. Your information may be disclosed as follows:",
+			isVisible: false,
 			list: [
 				{
 					subtitle: "By Law or to Protect Rights: ",
@@ -58,29 +61,38 @@
 			question: "Security of Your Information",
 			answer:
 				"We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that As with any internet-enabled system, there is always a risk of unauthorized access, so it’s important to protect your password and to contact us if you suspect any unauthorized access to your account.",
+			isVisible: false,
 		},
 		{
 			question: "Your Rights",
 			answer:
 				"You have the right to access, update, delete, or restrict the processing of your personal information. From your account and profile pages or you may also contact us for individual rights requests about your personal data.",
+			isVisible: false,
 		},
 		{
 			question: "Changes to This Privacy Policy",
 			answer:
 				"Our Privacy Policy may change from time to time. We will post any privacy policy changes on this page and, if the changes are significant, we will provide a more prominent notice.",
+			isVisible: false,
 		},
 		{
 			question: "Contact Us",
 			answer:
 				"If you have questions or comments about this Privacy Policy, please contact us ",
+			isVisible: false,
 			link: "here",
 			to: "/contact-us",
 		},
-	];
-	const activeIndex = ref(-1);
+	]);
 
 	const toggleAnswer = (index: number) => {
-		activeIndex.value = activeIndex.value === index ? -1 : index;
+		policies.map((policy, i) => {
+			if (index === i) {
+				policy.isVisible = !policy.isVisible;
+			} else {
+				policy.isVisible = false;
+			}
+		});
 	};
 </script>
 
@@ -104,7 +116,7 @@
 			</div>
 
 			<div class="policies">
-				<div v-for="(item, index) in policy" :key="index" class="s-item">
+				<div v-for="(item, index) in policies" :key="index" class="s-item">
 					<!-- <FAQitem :faq="item" /> -->
 					<div class="policy-item">
 						<div class="qes" @click="toggleAnswer(index)">
@@ -112,27 +124,27 @@
 							<span
 								><fai
 									class="fa-icon"
-									:icon="
-										activeIndex === index ? 'fa-chevron-up' : 'fa-chevron-down'
-									"
+									:icon="item.isVisible ? 'fa-chevron-up' : 'fa-chevron-down'"
 								></fai
 							></span>
 						</div>
-						<div v-show="activeIndex === index" class="ans">
-							<p>
-								{{ item.answer }}
-								<NuxtLink v-if="item.link" :to="item.to">{{
-									item.link
-								}}</NuxtLink>
-							</p>
-							<ul v-if="item.list">
-								<li v-for="i in item.list">
-									<fai icon="circle" class="icon" />
-									<span v-if="i.subtitle">{{ i.subtitle }}</span
-									>{{ i.content }}
-								</li>
-							</ul>
-						</div>
+						<Transition name="max">
+							<div v-show="item.isVisible" class="ans">
+								<p>
+									{{ item.answer }}
+									<NuxtLink v-if="item.link" :to="item.to">{{
+										item.link
+									}}</NuxtLink>
+								</p>
+								<ul v-if="item.list">
+									<li v-for="i in item.list">
+										<fai icon="circle" class="icon" />
+										<span v-if="i.subtitle">{{ i.subtitle }}</span
+										>{{ i.content }}
+									</li>
+								</ul>
+							</div>
+						</Transition>
 					</div>
 				</div>
 			</div>
@@ -202,7 +214,7 @@
 						}
 						.ans {
 							overflow: hidden;
-							transition: all 0.6s ease;
+							transition: all 0.2s ease-out;
 							padding: 12px;
 							p {
 								@include zfont(1.375rem, 400, #555);

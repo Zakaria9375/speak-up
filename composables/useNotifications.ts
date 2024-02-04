@@ -6,14 +6,22 @@ interface MyNoti {
 
 const notis = reactive<MyNoti[]>([]);
 export function useNotifications() {
-	function addNoti(m: string, t: "s" | "e" | "i", more: string = "") {
+	function addNoti(m: string, t: "s" | "e" | "i", error: string = "") {
 		const type = t === "s" ? "success" : t === "e" ? "error" : "info";
+		const err = computed(() => {
+			if(error) {
+				if (error.startsWith("AppwriteException:")) {
+					return error.replace("AppwriteException:", "").trim();
+				}
+
+			}
+		})
 		const msg = computed(() => {
 			switch (t) {
 				case "s":
 					return `${m} ✅`;
 				case "e":
-					return `${m} ❌`;
+					return `${m}: ${err.value} ❌`;
 				case "i":
 					return `${m} ℹ️`;
 			}
@@ -25,10 +33,9 @@ export function useNotifications() {
 		};
 		notis.push(notification);
 		if (t === "e") {
-			console.log("🔔", msg.value, more);
 			setTimeout(() => {
 				removeNoti(notification.$id);
-			}, 5000);
+			}, 7500);
 		} else {
 			setTimeout(() => {
 				removeNoti(notification.$id);

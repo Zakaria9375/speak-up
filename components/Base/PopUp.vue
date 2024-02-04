@@ -8,7 +8,7 @@ function close() {
 } 
 </script>
 <template>
-	<div class="overlay">
+		<div class="overlay">
 		<div class="bg" v-on-click-outside="close">
 			<div class="pop-head">
 				<button class="btnClose" @click="close">
@@ -17,9 +17,10 @@ function close() {
 			</div>
 			<slot></slot>
 		</div>
-	</div>
+	</div>	
 </template>
 <style lang="scss">
+
 .overlay {
 	position: fixed;
 	top: 0;

@@ -98,9 +98,9 @@ export const useAuthStore = defineStore("auth", () => {
 			}
 		}
 	}
-	function deleteAccount() {
-		appWrite.account.deleteIdentity(authId.value);
-		appWrite.databases.deleteDocument("appData", "users", authId.value);
+	async function deleteAccount() {
+		await appWrite.account.deleteIdentity(authId.value);
+		await appWrite.databases.deleteDocument("appData", "users", authId.value);
 		logout();
 	}
 	async function isUserRegistered(userId: string) {

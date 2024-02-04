@@ -21,7 +21,12 @@
 
 <template>
 	<div class="account-phone account-email">
-		<AccountCard :verify="!status" @saving="updateEmail" @verify="verifyEmail">
+		<AccountCard
+			:verify="!status"
+			:phone="email"
+			@saving="updateEmail"
+			@verify="verifyEmail"
+		>
 			<template #display>
 				<div class="display-info">
 					<div class="dis-name">
@@ -50,18 +55,19 @@
 			</template>
 		</AccountCard>
 	</div>
-	<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
-		<div class="res-msg">
-			<div class="res-photo">
-			<img src="/static/email/msg-r.png" alt="new massage" />
-		</div>
-		<p class="v-text">
-			An email has been sent to you. Please, check your email to complete
-			verification process.
-		</p>
-		</div>
-		
-	</LazyBasePopUp>
+	<Transition name="fade">
+		<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
+			<div class="res-msg">
+				<div class="res-photo">
+					<img src="/static/email/msg-r.png" alt="new massage" />
+				</div>
+				<p class="v-text">
+					An email has been sent to you. Please, check your email to complete
+					verification process.
+				</p>
+			</div>
+		</LazyBasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 	.res-msg {

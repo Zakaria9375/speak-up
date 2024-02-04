@@ -19,15 +19,20 @@
 		open();
 		accountStore.createPhoneVerification();
 	}
-	async function onPhoneVerify() {
-		await accountStore.verifyPhone(token.value);
+	function onPhoneVerify() {
+		accountStore.verifyPhone(token.value);
 		close();
 	}
 </script>
 
 <template>
 	<div class="account-phone">
-		<AccountCard :verify="!status" @saving="updatePhone" @verify="verifyPhone">
+		<AccountCard
+			:verify="!status"
+			:phone="phone"
+			@saving="updatePhone"
+			@verify="verifyPhone"
+		>
 			<template #display>
 				<div class="display-info">
 					<div class="dis-name">
@@ -54,29 +59,36 @@
 					nom="password"
 					v-model="form.password"
 				/>
-				<p class="helper">Password is Required. If you signed with google and you do not have password. please make password first</p>
+				<p class="helper">
+					Password is Required. If you signed with google and you do not have
+					password. please make password first
+				</p>
 			</template>
 		</AccountCard>
-		<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
-			<div class="phone-verify">
-				<form @submit.prevent="onPhoneVerify">
-					<BaseInput
-						type="password"
-						required
-						title="SMS Pin Code"
-						nom="token"
-						v-model="token"
-						placeholder="######"
-					/>
-					<p class="helper">Please, enter the code you have recieved</p>
+		<Transition name="fade">
+			<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
+				<div class="phone-verify">
+					<form @submit.prevent="onPhoneVerify">
+						<BaseInput
+							type="password"
+							required
+							title="SMS Pin Code"
+							nom="token"
+							v-model="token"
+							placeholder="######"
+						/>
+						<p class="helper">Please, enter the code you have recieved</p>
 
-					<div class="form-act">
-						<button type="button" @click="close" class="gh-btn">Cancel</button>
-						<button type="submit" class="blu-sm-btn">Confirm</button>
-					</div>
-				</form>
-			</div></LazyBasePopUp
-		>
+						<div class="form-act">
+							<button type="button" @click="close" class="gh-btn">
+								Cancel
+							</button>
+							<button type="submit" class="blu-sm-btn">Confirm</button>
+						</div>
+					</form>
+				</div>
+			</LazyBasePopUp>
+		</Transition>
 	</div>
 </template>
 <style lang="scss"></style>

@@ -30,28 +30,19 @@ body {
 	padding-left: 16px;
 	padding-right: 16px;
 }
-.d-container {
+.dashboard-container {
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 16px;
-	padding-right: 16px;
-	@media (max-width: 576px) {
+	@media (max-width: 850px) {
 		max-width: 100%;
+		padding-left: 16px;
+		padding-right: 16px;
 	}
-	@media (min-width: 576px) {
-		width: calc(540px - $navW);
-	}
-	@media (min-width: 768px) {
-		width: calc(720px - $navW);
-	}
-	@media (min-width: 992px) {
-		width: calc(960px - $navW);
-	}
-	@media (min-width: 1200px) {
-		width: 1120px;
-	}
-	@media (min-width: 1400px) {
-		width: calc(1320px - $navW);
+	@media (min-width: 850px) {
+		width: 100%;
+		max-width: 1320px;
+		padding-left: 16px;
+		padding-right: 16px;
 	}
 }
 .container {
@@ -106,7 +97,6 @@ body {
 
 .cardW {
 	margin: 16px 0;
-	padding: 16px;
 	background: #fff;
 	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 	border-radius: 8px;
@@ -115,6 +105,8 @@ body {
 .t-title {
 	h1 {
 		text-align: center;
+		text-transform: capitalize;
+		color: #eee;
 	}
 }
 .list-title {
@@ -142,10 +134,12 @@ body {
 	}
 }
 
-
 .g-details {
 	a {
 		@include zfont(1.25rem, 500, $greclr);
+		&::first-letter {
+			text-transform: uppercase;
+		}
 	}
 	p {
 		@include zfont(1.125rem, 300, $wdark);
@@ -190,8 +184,8 @@ h2.tito {
 .xxavatar {
 	border-radius: 50%;
 	max-width: 100%;
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 }
 .xxxavatar {
@@ -250,6 +244,12 @@ h2.tito {
 	@include zfont(1.15rem, 500, #fff);
 	text-transform: capitalize;
 }
+.red-sm-btn {
+	@include zbtn(#b73030, 10px 22px);
+	@include zfont(1.15rem, 500, #fff);
+	text-transform: capitalize;
+}
+
 .form-act {
 	@include zflex(row, nowrap, flex-end, center);
 }
@@ -321,7 +321,7 @@ img.online {
 }
 
 span.online {
-	padding: 0 4px;
+	margin: 0 6px 0 4px;
 }
 
 //account
@@ -330,6 +330,9 @@ span.online {
 	border-radius: 8px;
 	padding: 20px;
 	max-width: 270px;
+	@include less($xsmS) {
+		max-width: none;
+	}
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	margin-bottom: 18px;
 	background-color: #fff;
@@ -374,6 +377,9 @@ span.online {
 			p {
 				@include zfont(1.5rem, 500, $dark);
 				margin: 16px 0;
+				@include less($xsmS) {
+					font-size: 1.25rem;
+				}
 			}
 		}
 		@include zflex(row, wrap, space-between);
@@ -417,115 +423,183 @@ span.online {
 	padding-bottom: 100px;
 }
 
+//post
+@mixin postLarge {
+	.post-detail {
+		display: grid;
+		grid-template-columns: minmax(175px, 200px) auto;
+		.u-info {
+			min-height: 165px;
+			@include zflex(column, wrap, center, center);
+			text-align: center;
+			background-color: #f1f1f1;
+			.xxavatar {
+				margin-bottom: 6px;
+			}
+			.user-n {
+				padding: 4px;
+				@include zfont(1.25rem, 400, $dark);
+			}
+		}
+		.p-content {
+			position: relative;
+			flex: 1;
+			max-width: 100%;
+			padding: 18px 55px 40px 18px;
+			@include zfont(1.125rem, 400, $dark);
+			margin: 0;
+			line-height: 1.4;
+			text-align: justify;
+		}
+	}
+	.edit-btns {
+		@include zflex;
+		flex-direction: column;
+		position: absolute;
+		right: 0;
+		top: 35px;
+		background-color: $web;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
 
-//post 
-	@mixin postLarge {
-		.post-detail {
-			display: grid;
-			grid-template-columns: minmax(175px, 200px) auto;
-			.u-info {
-				min-height: 165px;
-				@include zflex(column, wrap, center, center);
-				text-align: center;
-				background-color: #f1f1f1;
+		border: 0.5px solid $web;
+		padding: 10px;
+		.editA:first-child {
+			margin-bottom: 15px;
+		}
+		.fa-icon {
+			color: $bluclr;
+		}
+	}
+	.date {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		padding: 10px;
+	}
+}
+@mixin postSmall {
+	.post-detail {
+		.u-info {
+			background-color: #ced4da;
+			.user {
+				@include zflex(row, nowrap, flex-start, center);
+				padding: 8px;
+
+				.xxavatar {
+					width: 45px;
+					height: 45px;
+					margin: 4px;
+				}
+
 				.user-n {
-					padding: 4px;
-					@include zfont(1.125rem, 400, $dark);
+					@include zfont(1.25rem, 400, $dark);
+					padding-left: 12px;
 				}
 			}
-			.p-content {
-				position: relative;
-				flex: 1;
-				max-width: 100%;
-				word-break: break-all;
-				padding: 16px 40px 40px 16px;
-				@include zfont(1.125rem, 400, $dark);
-				margin: 0;
-				line-height: 1.4;
-				text-align: justify;
-			}
 		}
-		.edit-btns {
-			@include zflex;
-			flex-direction: column;
-			position: absolute;
-			right: 0;
-			top: 35px;
-			background-color: $web;
-			border-top-left-radius: 6px;
-			border-bottom-left-radius: 6px;
-
-			border: 0.5px solid $web;
-			padding: 10px;
-			.editA:first-child {
-				margin-bottom: 15px;
-			}
-			.fa-icon {
-				color: $bluclr;
-			}
-		}
-		.date {
-			position: absolute;
-			right: 0;
-			bottom: 0;
-			padding: 10px;
+		.p-content {
+			padding: 16px 16px 40px;
+			@include zfont(1.125rem, 400, $dark);
+			margin: 0;
+			line-height: 1.4;
+			text-align: justify;
 		}
 	}
-	@mixin postSmall {
-		.post-detail {
-			.u-info {
-				background-color: #ced4da;
-				.user {
-					@include zflex(row, nowrap, flex-start, center);
-					padding: 6px;
-					.user-n {
-						@include zfont(1.125rem, 400, $dark);
-						padding-left: 12px;
-					}
-				}
-			}
-			.p-content {
-				padding: 16px 16px 40px;
-				@include zfont(1.125rem, 400, $dark);
-				margin: 0;
-				line-height: 1.4;
-				text-align: justify;
-			}
-		}
-		.edit-btns {
-			@include zflex;
+	.edit-btns {
+		@include zflex;
 
-			gap: 10px;
-			position: absolute;
-			right: 5px;
-			top: 10px;
-			padding: 10px;
-			.fa-icon {
-				color: $bluclr;
-			}
-		}
-		.date {
-			position: absolute;
-			right: 0;
-			bottom: 0;
-			padding: 10px;
+		gap: 12px;
+		position: absolute;
+		right: 5px;
+		top: 15px;
+		padding: 10px;
+		.fa-icon {
+			color: $bluclr;
+			font-size: 1.125rem;
 		}
 	}
-
-
-	
-	.post {
-		background-color: #fff;
-		box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
-			rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-		margin-bottom: 25px;
-		border-radius: 8px;
-		overflow: hidden;
-		position: relative;
-		@include more($mS) {
-			@include postLarge;
-		}
-		@include less($mS) {
-			@include postSmall;
-		}
+	.date {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		padding: 10px;
 	}
+}
+
+.post {
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+		rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+	margin: 0 8px 25px 8px;
+	border-radius: 8px;
+	overflow: hidden;
+	position: relative;
+	@include more($mS) {
+		@include postLarge;
+	}
+	@include less($mS) {
+		@include postSmall;
+	}
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s ease-in;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+	opacity: 1;
+}
+
+.max-enter-active,
+.max-leave-active {
+	transition: all 0.2s ease-out;
+}
+
+.max-enter-from,
+.max-leave-to {
+	max-height: 0;
+	opacity: 0;
+}
+.max-enter-to,
+.max-leave-from {
+	max-height: 600px;
+	opacity: 1;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+	transition: all 0.5s 1s;
+}
+.slide-left-enter-from {
+	opacity: 0;
+	transform: translate(50px, 0);
+}
+.slide-left-leave-to {
+	opacity: 0;
+	transform: translate(-50px, 0);
+}
+.slide-right-enter-from {
+	opacity: 0;
+	transform: translate(-50px, 0);
+}
+.slide-right-leave-to {
+	opacity: 0;
+	transform: translate(50px, 0);
+}
+
+.fade-up-enter-active {
+	transition: all 0.8s 2s;
+}
+
+.fade-up-enter-from {
+	opacity: 0;
+	transform: translate(0, 150px);
+}

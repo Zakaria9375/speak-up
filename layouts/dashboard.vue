@@ -8,7 +8,7 @@
 		<AppHeader />
 		<div class="z-page z-clr board-content">
 			<AppNav />
-			<div class="container">
+			<div class="dashboard-container">
 				<slot></slot>
 			</div>
 		</div>

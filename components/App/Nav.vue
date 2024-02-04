@@ -4,7 +4,7 @@
 	const scrollH = ref(document.documentElement.scrollHeight);
 	const { refValue, toggle } = useToggle();
 	const navControl = computed(() => {
-		return refValue.value && width.value ? "navShow" : "navHide";
+		return refValue.value && width.value ? "navShow container" : "navHide container";
 	});
 	const categories = computed(() => dataStore.categories);
 	onMounted(() => {
@@ -151,7 +151,7 @@
 			}
 			@include less(850px) {
 				max-height: 0;
-				width: 100%;
+				// width: 100%;
 				overflow: hidden;
 				padding: 0 12px;
 			}

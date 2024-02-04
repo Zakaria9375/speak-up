@@ -30,7 +30,7 @@ export const userKeys: (keyof User)[] = [
 	"threads",
 	"isActive",
 	"fileId",
-	"country"
+	"country",
 ];
 
 export const categoryKeys: (keyof Category)[] = [
@@ -73,4 +73,12 @@ export const postKeys: (keyof Post)[] = [
 	"madeBy",
 	"$createdAt",
 	"threadId",
+];
+
+export const counterKeys: (keyof Counter)[] = [
+	"categories",
+	"forums",
+	"threads",
+	"posts",
+	"users",
 ];

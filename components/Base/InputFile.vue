@@ -16,7 +16,6 @@
 		const target = e.target as HTMLInputElement;
 		if (target.files?.[0]) {
 			const file = target.files[0];
-			console.log(file)
 			const maxFileSize = fz * 1024; // 5 MB
 
 			if (file.size > maxFileSize) {
