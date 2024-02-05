@@ -179,6 +179,7 @@
 
 <style lang="scss">
 	.w-page {
+		overflow: hidden;
 		.land {
 			padding-bottom: 54px;
 			.container {
