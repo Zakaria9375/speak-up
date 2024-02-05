@@ -6,17 +6,7 @@
 		toggle: toggleUserMenu,
 		close: closeUserMenu,
 	} = useToggle();
-	const {
-		refValue: nMenu,
-		toggle: toggleNMenu,
-		close: closeNMenu,
-	} = useToggle();
 	const user = computed(() => authStore.authUser);
-	onMounted(() => {
-		if (authStore.loggedIn) {
-			authStore.getAuthUser();
-		}
-	});
 </script>
 
 <template>
@@ -50,7 +40,9 @@
 					<span>{{ user.name }}</span>
 				</div>
 				<li>
-					<NuxtLink :to="`/dashboard/profile/${user.$id}`">
+					<NuxtLink
+						:to="`/dashboard/profile/${user.$id}`"
+					>
 						<div class="icon"><fai class="fa-icon" icon="user"></fai></div>
 						profile</NuxtLink
 					>

@@ -3,20 +3,15 @@
 		id: { type: String, required: true },
 	});
 	const dataStore = useDataStore();
-	const {
-		response: lastThread,
-		isReady,
-		isLoading,
-		error,
-	} = await useAppFetcher(dataStore.getlastThread(id));
+	const lastThread = await dataStore.getlastThread(id);
 
 	const shortTitle = computed(() => {
 		const maxLength = 35;
 		const ending = "...";
-		if (lastThread.value.title && lastThread.value.title.length > maxLength) {
-			return lastThread.value.title.substring(0, maxLength) + ending;
+		if (lastThread.title && lastThread.title.length > maxLength) {
+			return lastThread.title.substring(0, maxLength) + ending;
 		}
-		return lastThread.value.title;
+		return lastThread.title;
 	});
 </script>
 

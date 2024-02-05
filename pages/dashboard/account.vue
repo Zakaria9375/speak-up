@@ -15,7 +15,7 @@
 		authStore.deleteAccount();
 	}
 	onMounted(() => {
-		appWrite.client.subscribe("account", authStore.getAuthUser);
+		appWrite.client.subscribe("account", () => authStore.getAuthUser());
 	});
 </script>
 

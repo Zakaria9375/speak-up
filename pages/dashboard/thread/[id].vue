@@ -65,7 +65,7 @@
 		});
 	}
 	function refreshPost() {
-		fetchData(startAt.value)
+		fetchData(startAt.value);
 	}
 </script>
 
@@ -94,7 +94,7 @@
 			</div>
 			<div class="post-list">
 				<div v-for="post in posts" :key="post.$id">
-					<PostCard :post="post" @@refresh-page="refreshPost"/>
+					<PostCard :post="post" @@refresh-page="refreshPost" />
 				</div>
 			</div>
 
@@ -111,23 +111,27 @@
 			/>
 		</div>
 		<div id="pop">
-			<LazyBasePopUp v-if="create" @close="closeCreate">
-				<PostCreate
-					v-if="thread"
-					:threadId="thread.$id"
-					@post-added="closeCreate"
-					@cancel="closeCreate"
-				/>
-			</LazyBasePopUp>
-			<BasePopUp class="del-main" v-if="del" @close="closeDel">
-				<ThreadDelete
-					v-if="thread"
-					:thread="thread"
-					:forumId="thread.forum.$id"
-					@thread-deleted="closeDel"
-					@cancel="closeDel"
-				/>
-			</BasePopUp>
+			<Transition name="fade">
+				<LazyBasePopUp v-if="create" @close="closeCreate">
+					<PostCreate
+						v-if="thread"
+						:threadId="thread.$id"
+						@post-added="closeCreate"
+						@cancel="closeCreate"
+					/>
+				</LazyBasePopUp>
+			</Transition>
+			<Transition name="fade">
+				<BasePopUp class="del-main" v-if="del" @close="closeDel">
+					<ThreadDelete
+						v-if="thread"
+						:thread="thread"
+						:forumId="thread.forum.$id"
+						@thread-deleted="closeDel"
+						@cancel="closeDel"
+					/>
+				</BasePopUp>
+			</Transition>
 		</div>
 	</div>
 </template>

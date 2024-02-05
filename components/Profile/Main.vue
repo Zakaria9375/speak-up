@@ -40,9 +40,11 @@
 			Profile
 		</button>
 	</div>
-	<LazyBasePopUp v-if="refValue" class="del-main" @close="close">
-		<ProfileEdit v-if="user" @cancel="close" />
-	</LazyBasePopUp>
+	<Transition name="fade">
+		<LazyBasePopUp v-if="refValue" class="del-main" @close="close">
+			<ProfileEdit v-if="user" @cancel="close" />
+		</LazyBasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 	.main-profile {

@@ -50,16 +50,19 @@ const { forums, title, categoryId } = defineProps({
 							: 'no-threads'
 					}}
 				</div>
-				<ThreadLast v-if="forum.threads.length > 0" class="noneMedS" :id="forum.$id" />
+				<!-- <ThreadLast v-if="forum.threads.length > 0" class="noneMedS" :id="forum.$id" /> -->
 			</div>
 		</div>
 	</div>
 </template>
 <style lang="scss">
 .category-item {
+	@include zflex;
 	.forum-list {
 		padding: 16px;
 		margin-bottom: 32px;
+		max-width: $lS;
+		width: 100%;
 		.forum {			
 			.forum-details {
 				flex-shrink: 1;

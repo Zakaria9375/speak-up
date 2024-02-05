@@ -81,21 +81,19 @@ export const useAuthStore = defineStore("auth", () => {
 		}
 	}
 	async function getAuthUser() {
-		if (loggedIn.value) {
-			try {
-				const getAccount = await appWrite.account.get();
-				authId.value = getAccount.$id;
-				authAccount.value = useTransform<Account>(getAccount, accountKeys);
-				const getUser = await appWrite.databases.getDocument(
-					"appData",
-					"users",
-					authId.value
-				);
-				authUser.value = useTransform<User>(getUser, userKeys);
-				// console.log("🍍👤✅ get user and account");
-			} catch (error) {
-				console.log("🍍👤❌ get user and account", error);
-			}
+		try {
+			const getAccount = await appWrite.account.get();
+			authId.value = getAccount.$id;
+			authAccount.value = useTransform<Account>(getAccount, accountKeys);
+			const getUser = await appWrite.databases.getDocument(
+				"appData",
+				"users",
+				authId.value
+			);
+			authUser.value = useTransform<User>(getUser, userKeys);
+		} catch (error) {
+			loggedIn.value = false;
+			console.log("🍍👤❌ get user and account", error);
 		}
 	}
 	async function deleteAccount() {
@@ -128,13 +126,13 @@ export const useAuthStore = defineStore("auth", () => {
 			console.log("🍍🔑❌ google login", error);
 		}
 	}
-	function checkIfStillLoggedIn() {
-		if (loggedIn.value) {
-			try {
-				appWrite.account.get();
-			} catch (error) {
-				loggedIn.value = false;
-			}
+	async function checkIfStillLoggedIn() {
+		try {
+			await appWrite.account.get();
+			loggedIn.value = true;
+			await getAuthUser();
+		} catch (error) {
+			loggedIn.value = false;
 		}
 	}
 

@@ -52,25 +52,26 @@
 			<BaseDate :isoTimestamp="post.$createdAt" />
 		</div>
 	</div>
-	<LazyBasePopUp v-if="edit" @close="closeEdit">
-		<PostUpdate
-			v-if="post"
-			:post="post"
-			@post-updated="refreshPage"
-			@cancel="closeEdit"
-		/>
-	</LazyBasePopUp>
-
-	<LazyBasePopUp class="del-main" v-if="deleting" @close="closeDelete">
-		<PostDelete
-			v-if="post"
-			:id="post.$id"
-			:threadId="post.threadId"
-			@post-deleted="refreshPage"
-			@cancel="closeDelete"
-		/>
-	</LazyBasePopUp>
+	<Transition name="fade">
+		<LazyBasePopUp v-if="edit" @close="closeEdit">
+			<PostUpdate
+				v-if="post"
+				:post="post"
+				@post-updated="refreshPage"
+				@cancel="closeEdit"
+			/>
+		</LazyBasePopUp>
+	</Transition>
+	<Transition name="fade">
+		<LazyBasePopUp class="del-main" v-if="deleting" @close="closeDelete">
+			<PostDelete
+				v-if="post"
+				:id="post.$id"
+				:threadId="post.threadId"
+				@post-deleted="refreshPage"
+				@cancel="closeDelete"
+			/>
+		</LazyBasePopUp>
+	</Transition>
 </template>
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

@@ -2,7 +2,7 @@
 	definePageMeta({
 		layout: "just-footer",
 	});
-	const err = ref(false)
+	const err = ref(false);
 	const { refValue: msgPop, open: openMsg, close: closeMsg } = useToggle();
 	const { defineField, handleSubmit, errors, validate } = useForm({
 		validationSchema: forgetPasswordSchema,
@@ -16,10 +16,9 @@
 			const isregistered = await accountStore.isRegistered(emailValue);
 			if (isregistered) {
 				openMsg();
-			await accountStore.recoverPassword(emailValue);
-			}
-			else {
-				err.value = true
+				await accountStore.recoverPassword(emailValue);
+			} else {
+				err.value = true;
 			}
 		}
 	});
@@ -48,23 +47,26 @@
 						:errorMessage="errors.email"
 					/>
 					<button type="submit">Submit</button>
-					
 				</form>
-				<p v-if="err" class="error-message" style="font-size: 1.375rem;">User not registered</p>
+				<p v-if="err" class="error-message" style="font-size: 1.375rem">
+					User not registered
+				</p>
 			</div>
 		</div>
 	</div>
-	<BasePopUp class="del-main" v-if="msgPop" @close="closeMsg">
-		<div class="reset-msg">
-			<div class="photo">
-				<img src="/static/forget/msg-r.png" alt="new massage" />
+	<Transition name="fade">
+		<LazyBasePopUp class="del-main" v-if="msgPop" @close="closeMsg">
+			<div class="reset-msg">
+				<div class="photo">
+					<img src="/static/forget/msg-r.png" alt="new massage" />
+				</div>
+				<p class="v-text">
+					An email has been sent to you. Please, check your email to complete
+					verification process.
+				</p>
 			</div>
-			<p class="v-text">
-				An email has been sent to you. Please, check your email to complete
-				verification process.
-			</p>
-		</div>
-	</BasePopUp>
+		</LazyBasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 	.fp-page {

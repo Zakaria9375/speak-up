@@ -34,9 +34,7 @@ export const useDataStore = defineStore("data", () => {
 				]
 			);
 			const response = lastThread.documents[0];
-			const transformed = useTransform<LastThread>(response, lastThreadKeys);
-			// console.log("🍍💾 - 👁️last📌 →→ ✅");
-			return transformed;
+			return response;
 		} catch (error) {
 			console.log("🍍💾 - 👁️last📌 →→ ❌", error);
 		}
