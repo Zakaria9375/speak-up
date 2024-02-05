@@ -18,7 +18,7 @@ export const useAuthStore = defineStore("auth", () => {
 			(res) => {
 				appWrite.updateUserStatus(res.userId, true);
 				loggedIn.value = true;
-				getAuthUser()
+				getAuthUser();
 				router.push("/dashboard");
 				// console.log("🍍🔑✅ login");
 			},
@@ -53,7 +53,7 @@ export const useAuthStore = defineStore("auth", () => {
 	}) {
 		try {
 			const router = useRouter();
-			registerErr.value = ""
+			registerErr.value = "";
 			const createAccount = await appWrite.account.create(
 				ID.unique(),
 				data.email,
@@ -61,7 +61,7 @@ export const useAuthStore = defineStore("auth", () => {
 				data.name
 			);
 			const locale = await appWrite.locale.get();
-			
+
 			const user = {
 				name: data.name,
 				email: data.email,
@@ -85,7 +85,7 @@ export const useAuthStore = defineStore("auth", () => {
 			try {
 				const getAccount = await appWrite.account.get();
 				authId.value = getAccount.$id;
-				authAccount.value = useTransform<Account>(getAccount, accountKeys); 
+				authAccount.value = useTransform<Account>(getAccount, accountKeys);
 				const getUser = await appWrite.databases.getDocument(
 					"appData",
 					"users",
@@ -117,7 +117,7 @@ export const useAuthStore = defineStore("auth", () => {
 			return false; // User not found or other error
 		}
 	}
-	function googleLogin () {
+	function googleLogin() {
 		try {
 			appWrite.account.createOAuth2Session(
 				"google",
@@ -128,6 +128,16 @@ export const useAuthStore = defineStore("auth", () => {
 			console.log("🍍🔑❌ google login", error);
 		}
 	}
+	function checkIfStillLoggedIn() {
+		if (loggedIn.value) {
+			try {
+				appWrite.account.get();
+			} catch (error) {
+				loggedIn.value = false;
+			}
+		}
+	}
+
 	return {
 		loggedIn,
 		authId,
@@ -145,5 +155,6 @@ export const useAuthStore = defineStore("auth", () => {
 		deleteAccount,
 		isUserRegistered,
 		googleLogin,
+		checkIfStillLoggedIn,
 	};
 });

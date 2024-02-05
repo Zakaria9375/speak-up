@@ -17,7 +17,6 @@
 	onMounted(() => {
 		appWrite.client.subscribe("account", authStore.getAuthUser);
 	});
-	console.log(await appWrite.account.get());
 </script>
 
 <template>
