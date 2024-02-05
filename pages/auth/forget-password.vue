@@ -54,6 +54,7 @@
 			</div>
 		</div>
 	</div>
+	<Transition name="fade">
 	<BasePopUp class="del-main" v-if="msgPop" @close="closeMsg">
 		<div class="reset-msg">
 			<div class="photo">
@@ -65,6 +66,7 @@
 			</p>
 		</div>
 	</BasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 	.fp-page {

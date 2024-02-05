@@ -128,6 +128,15 @@ export const useAuthStore = defineStore("auth", () => {
 			console.log("🍍🔑❌ google login", error);
 		}
 	}
+	async function checkIfStillLoggedIn(){
+		try {
+			await appWrite.account.get();
+			loggedIn.value = true;
+			getAuthUser();
+		} catch (error) {
+			loggedIn.value = false;
+		}
+	}
 	return {
 		loggedIn,
 		authId,
@@ -145,5 +154,6 @@ export const useAuthStore = defineStore("auth", () => {
 		deleteAccount,
 		isUserRegistered,
 		googleLogin,
+		checkIfStillLoggedIn
 	};
 });

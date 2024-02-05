@@ -39,10 +39,11 @@
 			<span class="pen"><fai class="fa-icon" icon="pencil"></fai></span>Edit
 			Profile
 		</button>
-	</div>
+	</div><Transition name="fade">
 	<LazyBasePopUp v-if="refValue" class="del-main" @close="close">
 		<ProfileEdit v-if="user" @cancel="close" />
 	</LazyBasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 	.main-profile {

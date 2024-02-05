@@ -52,6 +52,7 @@
 			<BaseDate :isoTimestamp="post.$createdAt" />
 		</div>
 	</div>
+	<Transition name="fade">
 	<LazyBasePopUp v-if="edit" @close="closeEdit">
 		<PostUpdate
 			v-if="post"
@@ -60,7 +61,8 @@
 			@cancel="closeEdit"
 		/>
 	</LazyBasePopUp>
-
+	</Transition>
+<Transition name="fade">
 	<LazyBasePopUp class="del-main" v-if="deleting" @close="closeDelete">
 		<PostDelete
 			v-if="post"
@@ -70,6 +72,7 @@
 			@cancel="closeDelete"
 		/>
 	</LazyBasePopUp>
+	</Transition>
 </template>
 <style lang="scss">
 

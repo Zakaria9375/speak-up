@@ -111,6 +111,7 @@
 			/>
 		</div>
 		<div id="pop">
+			<Transition name="fade">
 			<LazyBasePopUp v-if="create" @close="closeCreate">
 				<PostCreate
 					v-if="thread"
@@ -119,6 +120,8 @@
 					@cancel="closeCreate"
 				/>
 			</LazyBasePopUp>
+			</Transition>
+			<Transition name="fade">
 			<BasePopUp class="del-main" v-if="del" @close="closeDel">
 				<ThreadDelete
 					v-if="thread"
@@ -128,6 +131,7 @@
 					@cancel="closeDel"
 				/>
 			</BasePopUp>
+			</Transition>
 		</div>
 	</div>
 </template>

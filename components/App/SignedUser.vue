@@ -6,13 +6,8 @@
 		toggle: toggleUserMenu,
 		close: closeUserMenu,
 	} = useToggle();
-	const {
-		refValue: nMenu,
-		toggle: toggleNMenu,
-		close: closeNMenu,
-	} = useToggle();
 	const user = computed(() => authStore.authUser);
-	onMounted(()=> authStore.getAuthUser())
+	authStore.checkIfStillLoggedIn()
 </script>
 
 <template>
