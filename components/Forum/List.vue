@@ -63,6 +63,7 @@ const { forums, title, categoryId } = defineProps({
 		.forum {			
 			.forum-details {
 				flex-shrink: 1;
+				flex-basis: 50%;
 				min-width: 200px;
 				margin-right: 10px;
 			}
