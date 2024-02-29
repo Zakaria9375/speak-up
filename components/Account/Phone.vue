@@ -50,6 +50,7 @@
 					title="Phone"
 					nom="phone"
 					v-model="form.phone"
+					autocomplete="phone"
 				/>
 				<p class="helper">Country code with a leading + is a must</p>
 				<BaseInput
@@ -58,6 +59,7 @@
 					title="Password"
 					nom="password"
 					v-model="form.password"
+					autocomplete="current-password"
 				/>
 				<p class="helper">
 					Password is Required. If you signed with google and you do not have

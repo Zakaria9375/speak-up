@@ -23,7 +23,6 @@ export function useAppWrite() {
 		const data = { userId, isActive };
 		functions
 			.createExecution("658fc32f58c191e05288", JSON.stringify(data))
-			.then((response) => console.log("Function updateUserStatus executed"))
 			.catch((error) => console.error("Error:", error));
 	}
 	return {

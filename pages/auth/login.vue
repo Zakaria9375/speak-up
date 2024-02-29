@@ -35,6 +35,7 @@
 						v-model="email"
 						v-bind="emailAttrs"
 						:errorMessage="errors.email"
+						autocomplete="email"
 					/>
 					<BaseInput
 						type="password"
@@ -43,6 +44,7 @@
 						v-model="password"
 						v-bind="passwordAttrs"
 						:errorMessage="errors.password"
+						autocomplete="current-password"
 					/>
 					<nuxt-link
 						to="/auth/forget-password"

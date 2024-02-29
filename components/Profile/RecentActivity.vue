@@ -72,7 +72,7 @@
 				/>
 				<LazyProfileThread :thread="item" v-else />
 			</div>
-			<div v-zis="onLoadMore"></div>
+			<div v-zinfinite="onLoadMore"></div>
 		</div>
 	</div>
 </template>

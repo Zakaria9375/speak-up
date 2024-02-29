@@ -38,6 +38,7 @@
 		<LazyBasePopUp class="del-main" v-if="refValue" @close="close">
 			<div v-if="!updating" class="account-password">
 				<form @submit.prevent="savePassword">
+					<input id="username" type="email" autocomplete="email" value="user@xample.com" hidden>
 					<BaseInput
 						type="password"
 						title="Old Password"
@@ -45,6 +46,7 @@
 						v-model="oldPassword"
 						v-bind="oldPasswordAttrs"
 						:errorMessage="errors.oldPassword"
+						autocomplete="current-password"
 					/>
 					<p class="helper">
 						If you have signed with google enter the new password in all fields
@@ -56,6 +58,7 @@
 						v-model="newPassword"
 						v-bind="newPasswordAttrs"
 						:errorMessage="errors.newPassword"
+						autocomplete="new-password"
 					/>
 					<BaseInput
 						type="password"
@@ -64,6 +67,7 @@
 						v-model="confirmPassword"
 						v-bind="confirmPasswordAttrs"
 						:errorMessage="errors.confirmPassword"
+						autocomplete="new-password"
 					/>
 					<div class="form-act">
 						<button type="button" class="gh-btn" @click="close">cancel</button>

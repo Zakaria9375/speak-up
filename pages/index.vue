@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+	const { refValue, open, close } = useToggle();
 	const whatToExpect = [
 		{
 			src: "for-comms.webp",
 			title: "For Comms",
-			sub: "Experience simplicity at its best – a powerful yet easy-to-use tool for better commmunication.",
+			sub: "Experience simplicity at its best, a powerful yet easy-to-use tool for better commmunication.",
 		},
 		{
 			src: "for-family.webp",
@@ -22,9 +23,11 @@
 		},
 	];
 	const counterStore = useCounterStore();
+	const authStore = useAuthStore();
 	const counts = computed(() => counterStore.counter);
 	onMounted(() => {
 		counterStore.getCounts();
+		setTimeout(() => open(), 10000);
 	});
 </script>
 
@@ -63,7 +66,19 @@
 				</div>
 			</div>
 		</section>
-		<section class="stats sec-pad">
+		<section class="smart sec-pad">
+			<div class="ex-container">
+				<div class="photo">
+					<img src="/static/welcome/speakup-profile.png" alt="devices" />
+				</div>
+				<div class="profile">
+					<h3>Smart solution for modern environment</h3>
+					<p>We have set up everything you need to go digital with a user-friendly platform. Don't talk our word for it, Talk a look.</p>
+					<nuxt-link to="/auth/register">Try it for Free</nuxt-link>
+				</div>
+			</div>
+		</section>
+		<section class="stats sec-pad z-clr">
 			<div class="container">
 				<div class="sec-main-title">
 					<h1>Our awesome app</h1>
@@ -74,25 +89,31 @@
 						<img src="/static/welcome/events.png" alt="" />
 					</div>
 					<div class="content">
-						<div class="details">
+						<div v-if="counts.categories" class="details">
 							<div class="unit">
-								<span class="unit-nr">{{ counts.categories }}</span>
+								<span class="unit-nr" v-zanimate="{ fv: counts.categories }"
+									>0</span
+								>
 								<span>Categories</span>
 							</div>
 							<div class="unit">
-								<span class="unit-nr">{{ counts.forums }}</span>
+								<span class="unit-nr" v-zanimate="{ fv: counts.forums }"
+									>0</span
+								>
 								<span>Forums</span>
 							</div>
 							<div class="unit">
-								<span class="unit-nr">{{ counts.threads }}</span>
+								<span class="unit-nr" v-zanimate="{ fv: counts.threads }"
+									>0</span
+								>
 								<span>Threads</span>
 							</div>
 							<div class="unit">
-								<span class="unit-nr">{{ counts.posts }}</span>
+								<span class="unit-nr" v-zanimate="{ fv: counts.posts }">0</span>
 								<span>Posts</span>
 							</div>
 							<div class="unit">
-								<span class="unit-nr">{{ counts.users }}</span>
+								<span class="unit-nr" v-zanimate="{ fv: counts.users }">0</span>
 								<span>Users</span>
 							</div>
 						</div>
@@ -109,7 +130,8 @@
 				</main>
 			</div>
 		</section>
-		<section class="why-ourapp z-clr sec-pad">
+
+		<section class="why-ourapp sec-pad">
 			<div class="ex-container">
 				<div class="sec-main-title">
 					<h1>Why Speak-Up?</h1>
@@ -156,8 +178,7 @@
 				</main>
 			</div>
 		</section>
-
-		<section class="contact sec-pad">
+		<section class="contact sec-pad z-clr">
 			<div class="container">
 				<div class="photo">
 					<img src="/static/welcome/customer-support.webp" alt="cs" />
@@ -175,6 +196,29 @@
 			</div>
 		</section>
 	</div>
+	<transition name="fade">
+		<lazy-base-pop-up
+			class="del-main"
+			v-if="refValue && !authStore.loggedIn"
+			@close="close"
+		>
+			<div class="sign-now">
+				<div class="invite">
+					<h1>🌟 Welcome to Speak-Up! 🌟</h1>
+					<p>
+						Engage in meaning conversations and Become a Part of Our Community.
+						Speak-Up is where your voice matters, and your opinions shape the
+						future of communication.
+					</p>
+				</div>
+				<div class="form-act">
+					<nuxt-link :to="{ name: 'auth-register' }" class="sign-up"
+						>Sign up</nuxt-link
+					>
+				</div>
+			</div>
+		</lazy-base-pop-up>
+	</transition>
 </template>
 
 <style lang="scss">
@@ -466,6 +510,37 @@
 				}
 			}
 		}
+		.smart {
+			.ex-container {
+				@include zflex(row-reverse, nowrap, center, center);
+				gap: 32px;
+				padding-left: 32px;
+				padding-right: 32px;
+				@include less($lS) {
+					flex-wrap: wrap;
+				}
+				.photo {
+					max-width: 680px;					
+					@include zflex;
+				}
+				.profile {
+					padding: 16px;
+					h3 {
+						@include zfont(2.25rem, 500, $dark);
+					}
+					p {
+						@include zfont(1.65rem, 500, #666);
+						margin: 32px 0 48px;
+						line-height: 1.25;
+					}
+					a {
+						@include zbtn(darken($orclr, 5%), 14px 32px);
+						@include zfont(1.5rem, 500, #666);
+						border-radius: 8px;
+					}
+				}
+			}
+		}
 		.contact {
 			.container {
 				@include zflex(row, nowrap, center, center);
@@ -475,6 +550,7 @@
 				}
 				.photo {
 					max-width: 430px;
+
 				}
 				.details {
 					padding: 0 8px;
@@ -492,6 +568,27 @@
 						border-radius: 27.5px;
 					}
 				}
+			}
+		}
+	}
+	.sign-now {
+		.invite {
+			padding: 0 16px;
+			h1 {
+				margin: 0;
+				@include zfont(2rem, 500, #212121);
+				text-align: center;
+			}
+			p {
+				@include zfont(1.375rem, 400, #666);
+			}
+		}
+		.form-act {
+			@include zflex;
+			.sign-up {
+				margin-left: 8px;
+				@include zbtn(#0284c7, 12px 24px);
+				@include zfont(1.125rem, 500, #fff);
 			}
 		}
 	}

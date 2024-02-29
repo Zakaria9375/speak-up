@@ -40,6 +40,7 @@
 						v-model="name"
 						v-bind="nameAttrs"
 						:errorMessage="errors.name"
+						autocomplete="name"
 					/>
 					<BaseInput
 						type="email"
@@ -48,6 +49,7 @@
 						v-model="email"
 						v-bind="emailAttrs"
 						:errorMessage="errors.email"
+						autocomplete="email"
 					/>
 					<BaseInput
 						type="password"
@@ -56,6 +58,7 @@
 						v-model="password"
 						v-bind="passwordAttrs"
 						:errorMessage="errors.password"
+						autocomplete="new-password"
 					/>
 					<BaseInput
 						type="password"
@@ -64,6 +67,7 @@
 						v-model="confirmPassword"
 						v-bind="confirmPasswordAttrs"
 						:errorMessage="errors.confirmPassword"
+						autocomplete="new-password"
 					/>
 					<button type="submit" class="signup">Sign Up</button>
 				</form>
