@@ -7,6 +7,7 @@
 		close: closeUserMenu,
 	} = useToggle();
 	const user = computed(() => authStore.authUser);
+	authStore.checkIfStillLoggedIn()
 </script>
 
 <template>

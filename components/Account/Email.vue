@@ -43,6 +43,7 @@
 					title="email"
 					nom="email"
 					v-model="form.email"
+					autocomplete="email"
 				/>
 				<BaseInput
 					type="password"
@@ -50,6 +51,7 @@
 					title="Password"
 					nom="password"
 					v-model="form.password"
+					autocomplete="current-password"
 				/>
 				<p class="helper">Password is Required for your own security</p>
 			</template>

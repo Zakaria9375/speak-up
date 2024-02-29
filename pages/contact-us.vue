@@ -57,6 +57,7 @@
 							v-model="name"
 							v-bind="nameAttrs"
 							:errorMessage="errors.name"
+							autocomplete="name"
 						/>
 						<BaseInput
 							class="c-input"
@@ -66,6 +67,7 @@
 							v-model="email"
 							v-bind="emailAttrs"
 							:errorMessage="errors.email"
+							autocomplete="email"
 						/>
 						<BaseInput
 							class="c-input"
@@ -74,6 +76,7 @@
 							v-model="subject"
 							v-bind="subjectAttrs"
 							:errorMessage="errors.subject"
+							autocomplete="subject"
 						/>
 						<BaseInput
 							class="c-textarea"
@@ -83,6 +86,7 @@
 							v-model="message"
 							v-bind="messageAttrs"
 							:errorMessage="errors.message"
+							autocomplete="message"
 						/>
 						<button type="submit" :disabled="submitted">
 							Send <fai class="fa-icon" icon="paper-plane"></fai>
