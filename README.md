@@ -1,75 +1,62 @@
-# Nuxt 3 Minimal Starter
+# Speak up
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Speak-up is a web communication app that enables you to engage in meaningful conversation. Speak-Up is the perfect place to share your thoughts, learn new perspectives, and connect with like-minded individuals.
+
+talk a look live at [Speak up](https://speak-up.zaportfolio.com/)
+
+## Technical Description
+
+### Main technologies  
+
+The main technologies that has been used in this app are:
+
+* Nuxt
+* Appwrite
+* Typescript
+* SCSS
+* node-js
+
+The app also utilize some libriries like vue-router, pinia, vee-validate, yup, nuxt-aos, dayjs, axios, vueuse
+
+### App overview
+
+* Total components: **37**  
+* Total routes: **20**
+* 2 vue cutom directive has been created:  
+  * infinite-scroll directive: to handle loading more on scroll in profile page.  
+  * animate-increment directtive: to handle animation for numeric values in main page
+
+![components](/public/readme/components.png)
+
+![routes](/public/readme/routes.png)
 
 ## Setup
 
-Make sure to install the dependencies:
+In order to run this app in development mode open terminal and write the following:
 
 ```bash
-# npm
+git clone https://github.com/Zakaria9375/speak-up.git
+cd speak-up
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Gallery  
 
-Build the application for production:
+![speakup-profile](/public/gallery/sprofile.png)
 
-```bash
-# npm
-npm run build
+![dashboard](/public/gallery/7.png)
 
-# pnpm
-pnpm run build
+![profile](/public/gallery/8.png)
 
-# yarn
-yarn build
+![account](/public/gallery/9.png)
 
-# bun
-bun run build
-```
+![thread](/public/gallery/10.png)
 
-Locally preview production build:
+![pagination](/public/gallery/11.png)
 
-```bash
-# npm
-npm run preview
+![thread-create](/public/gallery/12.png)
 
-# pnpm
-pnpm run preview
+## License
 
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Copright (c) 2024, Zakaria Ali

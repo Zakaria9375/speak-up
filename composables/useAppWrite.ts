@@ -19,7 +19,11 @@ export function useAppWrite() {
 	const locale = new Locale(client);
 	const avatars = new Avatars(client);
 	document.cookie =
+		"name=speakupD; domain=.zaportfolio.com; path=/; Secure; SameSite=None; Partitioned";
+	document.cookie =
 		"name=appwrite-speakup; domain=.speak-up.zaportfolio.com; path=/; Secure; SameSite=None; Partitioned";
+	document.cookie =
+		"name=appwrite-speakup2; domain=appwrite.speak-up.zaportfolio.com; path=/; Secure; SameSite=None; Partitioned";
 	function updateUserStatus(userId: string, isActive: boolean) {
 		const data = { userId, isActive };
 		functions

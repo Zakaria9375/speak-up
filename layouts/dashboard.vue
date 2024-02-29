@@ -1,4 +1,5 @@
-
+<script setup>
+</script>
 <template>
 	<div class="dash-layout">
 		<NuxtLoadingIndicator color="#0284c7" :height="4" />
