@@ -3,7 +3,6 @@
 	function display() {
 		isReady.value = true;
 	}
-document.cookie = "name=third-party; domain=.speak-up.zaportfolio.com; path=/; Secure; SameSite=None; Partitioned";
 </script>
 <template>
 	<div>

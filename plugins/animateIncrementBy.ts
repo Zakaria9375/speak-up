@@ -32,14 +32,12 @@ export default defineNuxtPlugin((nuxtApp) => {
 			const handleScroll = () => {
 				const elementTop = el.getBoundingClientRect().top;
 				const viewportHeight = window.innerHeight;
-				const elementBottom = el.getBoundingClientRect().bottom;
-
-				if (elementBottom > 0 && elementTop <= viewportHeight * 0.8) {
+				if (elementTop <= viewportHeight * 0.8) {
 					if (!animationStarted) {
 						animationStarted = true;
 						requestAnimationFrame(animateValue);
 					}
-				} else if (elementTop > viewportHeight || elementBottom < 0) {
+				} else if (elementTop > viewportHeight ) {
 					animationStarted = false;
 					startTime = null;
 				}
