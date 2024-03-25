@@ -23,7 +23,7 @@ export const useAccountStore = defineStore("account", () => {
 	async function createEmailVerification() {
 		try {
 			await appWrite.account.createVerification(
-				"https://speak-up.zaportfolio.com/email-verify"
+				"https://app-speakup.netlify.app/email-verify"
 			);
 			addNoti("Email verification has been created", "i");
 		} catch (error) {
@@ -71,7 +71,7 @@ export const useAccountStore = defineStore("account", () => {
 	async function recoverPassword(email: string) {
 		await appWrite.account.createRecovery(
 			email,
-			"https://speak-up.zaportfolio.com/auth/password-recovery"
+			"https://app-speakup.netlify.app/auth/password-recovery"
 		);
 	}
 

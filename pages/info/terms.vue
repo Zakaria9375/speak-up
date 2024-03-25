@@ -11,7 +11,7 @@
 						<p>
 							Welcome to Speak Up! These Terms and Conditions outline the rules
 							and regulations for the use of Speak Up's Website, located at
-							https://speak-up.zaportfolio.com/. By accessing this website, we
+							https://app-speakup.netlify.app/. By accessing this website, we
 							assume you accept these terms and conditions. Do not continue to
 							use Speak Up if you do not agree to take all of the terms and
 							conditions stated on this page.

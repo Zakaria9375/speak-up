@@ -2,7 +2,7 @@
 
 Speak-up is a web communication app that enables you to engage in meaningful conversation. Speak-Up is the perfect place to share your thoughts, learn new perspectives, and connect with like-minded individuals.
 
-talk a look live at [Speak up](https://speak-up.zaportfolio.com/)
+talk a look live at [Speak up](https://app-speakup.netlify.app/)
 
 ## Technical Description
 
