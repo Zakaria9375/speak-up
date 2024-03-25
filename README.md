@@ -34,6 +34,8 @@ The app also utilizes some libraries like vue-router, pinia, vee-validate, yup, 
 
 ![components](/public/readme/components.png)
 
+#### App routes
+
 ![routes](/public/readme/routes.png)
 
 ## Setup
@@ -49,17 +51,31 @@ npm run dev
 
 ## Gallery  
 
+### Configurable to match Different screen sizes
+
 ![speakup-profile](/public/gallery/sprofile.png)
+
+### Dashboard Page
 
 ![dashboard](/public/gallery/7.png)
 
+### Profile Page
+
 ![profile](/public/gallery/8.png)
+
+### Account Page
 
 ![account](/public/gallery/9.png)
 
+### Thread Page
+
 ![thread](/public/gallery/10.png)
 
+### Pagination
+
 ![pagination](/public/gallery/11.png)
+
+### Thread-Create Page
 
 ![thread-create](/public/gallery/12.png)
 
