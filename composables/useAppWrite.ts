@@ -10,7 +10,7 @@ import {
 
 export function useAppWrite() {
 	const client = new Client()
-		.setEndpoint("https://appwrite.speak-up.zaportfolio.com/v1")
+		.setEndpoint("https://cloud.appwrite.io/v1")
 		.setProject("65718378450202a4f926");
 	const account = new Account(client);
 	const databases = new Databases(client);
@@ -18,12 +18,6 @@ export function useAppWrite() {
 	const storage = new Storage(client);
 	const locale = new Locale(client);
 	const avatars = new Avatars(client);
-	document.cookie =
-		"name=speakupD; domain=.zaportfolio.com; path=/; Secure; SameSite=None; Partitioned";
-	document.cookie =
-		"name=appwrite-speakup; domain=.speak-up.zaportfolio.com; path=/; Secure; SameSite=None; Partitioned";
-	document.cookie =
-		"name=appwrite-speakup2; domain=appwrite.speak-up.zaportfolio.com; path=/; Secure; SameSite=None; Partitioned";
 	function updateUserStatus(userId: string, isActive: boolean) {
 		const data = { userId, isActive };
 		functions

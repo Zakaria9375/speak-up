@@ -8,7 +8,7 @@ talk a look live at [Speak up](https://speak-up.zaportfolio.com/)
 
 ### Main technologies  
 
-The main technologies that has been used in this app are:
+The main technologies that have been used in this app are:
 
 * Nuxt
 * Appwrite
@@ -16,15 +16,21 @@ The main technologies that has been used in this app are:
 * SCSS
 * node-js
 
-The app also utilize some libriries like vue-router, pinia, vee-validate, yup, nuxt-aos, dayjs, axios, vueuse
+The app also utilizes some libraries like vue-router, pinia, vee-validate, yup, nuxt-aos, dayjs, axios, vueuse
 
-### App overview
+### Features
+
+* Google Authentication API
+* Realtime database
+* Infinite scroll and pagination reduce initial load times.
+
+### App Overview
 
 * Total components: **37**  
 * Total routes: **20**
-* 2 vue cutom directive has been created:  
+* 2 vue custom directive has been created:  
   * infinite-scroll directive: to handle loading more on scroll in profile page.  
-  * animate-increment directtive: to handle animation for numeric values in main page
+  * animate-increment directive: to handle animation for numeric values in the main page
 
 ![components](/public/readme/components.png)
 
@@ -32,7 +38,7 @@ The app also utilize some libriries like vue-router, pinia, vee-validate, yup, n
 
 ## Setup
 
-In order to run this app in development mode open terminal and write the following:
+To run this app in development mode open the terminal and write the following:
 
 ```bash
 git clone https://github.com/Zakaria9375/speak-up.git
@@ -59,4 +65,4 @@ npm run dev
 
 ## License
 
-Copright (c) 2024, Zakaria Ali
+Copyright (c) 2024, Zakaria Ali
